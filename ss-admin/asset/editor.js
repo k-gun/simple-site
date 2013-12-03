@@ -17,14 +17,14 @@ function _x(a, b) {
 }
 
 mii.onReady(function($){
-    var editor = _e();
-    editor.document.designMode = "on";
-    editor.document.open();
-    editor.document.write("<link rel='stylesheet' href='/ss-admin/asset/editor-frame.css?"+ (new Date).getTime() +"'>");
-    editor.document.write("<body spellcheck='false'></body>");
-    editor.document.close();
+    var iframe = _e();
+    iframe.document.designMode = "on";
+    iframe.document.open();
+    iframe.document.write("<link rel='stylesheet' href='/ss-admin/asset/editor-frame.css?"+ (new Date).getTime() +"'>");
+    iframe.document.write("<body spellcheck='false'></body>");
+    iframe.document.close();
 
-    editor = _("editor");
+    var editor = _("editor");
     editor.contentWindow.onfocus = function(){
         editor.className = "editor-focus";
     };
@@ -32,14 +32,26 @@ mii.onReady(function($){
         editor.className = "";
     };
 
+    // Form
+    $.dom(".ss-admin-item-update").on("submit", function(e){
+        e.preventDefault();
+        var html = iframe.document.body.innerHTML;
+        html.replace(/<p><br([\s\/]*)><\/p>/, "");
+        alert(html);
+    });
+
     // Buttons
-    $.dom(".ss-admin-editor .fa[role='button']").on("click", function(e){
+    var ssAdminEditor = $.dom(".ss-admin-editor");
+    ssAdminEditor.find(".fa[role='button']").on("click", function(e){
         $.dom(this).toggleClass("fa-active");
     });
-    $.dom(".ss-admin-editor .fa[exec='justify']").on("click", function(e){
+    ssAdminEditor.find(".fa[exec='list']").on("click", function(e){
         $.dom(this).siblings().removeClass("fa-active");
     });
-    $.dom(".ss-admin-editor .fa-eraser").on("click", function(e){
-        $.dom(".ss-admin-editor .fa[exec='format']").removeClass("fa-active");
+    ssAdminEditor.find(".fa[exec='justify']").on("click", function(e){
+        $.dom(this).siblings().removeClass("fa-active");
+    });
+    ssAdminEditor.find(".fa-eraser").on("click", function(e){
+        ssAdminEditor.find(".fa[exec='format']").removeClass("fa-active");
     });
 });

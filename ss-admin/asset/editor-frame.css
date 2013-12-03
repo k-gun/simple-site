@@ -3,9 +3,11 @@
 body {
     padding: 6px;
     font-size: 12px;
-    line-height: 1.4em;
 }
 
 ol, ul {
     list-style-position: inside;
 }
+
+::-moz-selection {background-color: #d7e7f4; text-shadow:none; color: #444;}
+::selection {background-color: #d7e7f4; text-shadow:none; color: #444;}

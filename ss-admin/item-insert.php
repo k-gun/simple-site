@@ -19,24 +19,25 @@ if (isset($_POST['submit'])) {
     <form method="post" action="<?=get_uri()?>" class="ss-admin-item-update">
         <div><input type="text" name="item_title" placeholder="Title" class="ss-admin-item-update-text"></div>
         <div class="ss-admin-editor fixed">
-            <span class="floatr">
-                <i class="fa fa-eraser" onclick="_x('removeformat')" title="Remove format(s)"></i>
-            </span>
-            <i class="fa fa-bold" role="button" exec="format" onclick="_x('bold')"></i>
-            <i class="fa fa-italic" role="button" exec="format" onclick="_x('italic')"></i>
-            <i class="fa fa-underline" role="button" exec="format" onclick="_x('underline')"></i>
-            <i class="fa fa-strikethrough" role="button" exec="format" onclick="_x('strikethrough')"></i>
-            <i class="fa fa-list-ol" role="button" onclick="_x('insertorderedlist')"></i>
-            <i class="fa fa-list-ul" role="button" onclick="_x('insertunorderedlist')"></i>
+            <i class="fa fa-bold" role="button" exec="format" onclick="_x('bold')" title="Bold"></i>
+            <i class="fa fa-italic" role="button" exec="format" onclick="_x('italic')" title="Italic"></i>
+            <i class="fa fa-underline" role="button" exec="format" onclick="_x('underline')" title="Underline"></i>
+            <i class="fa fa-strikethrough" role="button" exec="format" onclick="_x('strikethrough')" title="Strike through"></i>
+            <i class="fa fa-eraser" onclick="_x('removeformat')" title="Remove format(s)"></i>
             &nbsp;
             <span>
-                <i class="fa fa-align-justify" role="button" exec="justify" onclick="_x('justifyfull')"></i>
-                <i class="fa fa-align-left" role="button" exec="justify" onclick="_x('justifyleft')"></i>
-                <i class="fa fa-align-center" role="button" exec="justify" onclick="_x('justifycenter')"></i>
-                <i class="fa fa-align-right" role="button" exec="justify" onclick="_x('justifyright')"></i>
+                <i class="fa fa-list-ol" role="button" exec="list" onclick="_x('insertorderedlist')" title="Insert ordered list"></i>
+                <i class="fa fa-list-ul" role="button" exec="list" onclick="_x('insertunorderedlist')" title="Insert unordered list"></i>
             </span>
             &nbsp;
-            <i class="fa fa-picture-o" onclick=""></i>
+            <span>
+                <i class="fa fa-align-justify" role="button" exec="justify" onclick="_x('justifyfull')" title="Justify full"></i>
+                <i class="fa fa-align-left" role="button" exec="justify" onclick="_x('justifyleft')" title="Justify left"></i>
+                <i class="fa fa-align-center" role="button" exec="justify" onclick="_x('justifycenter')" title="Justify center"></i>
+                <i class="fa fa-align-right" role="button" exec="justify" onclick="_x('justifyright')" title="Justify right"></i>
+            </span>
+            &nbsp;
+            <i class="fa fa-picture-o" onclick="" title="Insert image"></i>
         </div>
         <div>
             <iframe src="about:blank" id="editor" name="editor" frameborder="0"></iframe>
