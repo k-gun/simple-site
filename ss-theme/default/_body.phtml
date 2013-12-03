@@ -1,0 +1,17 @@
+
+<div class="ss-body">
+
+<?php
+// Get route
+$route = ss_route();
+// $route_name = get_array_value($route, ':name');
+$route_file = get_array_value($route, ':file');
+// Load route file
+if (file_exists($route_file)) {
+    include($route_file);
+} else {
+    include(SS_THEME_FILE_404);
+}
+?>
+
+</div><!-- .ss-body -->

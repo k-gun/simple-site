@@ -1,0 +1,70 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    font-family: "Open Sans", helvetica, arial, sans-serif;
+}
+
+body {
+    color: #555;
+    font-size: 110%;
+    line-height: 1.45em;
+    background-color: #fff;
+}
+
+a {
+    color: #256e96;
+    cursor: pointer;
+    text-decoration: none;
+} a:hover {
+    text-decoration: underline;
+}
+
+ol, ul {
+    list-style: none;
+    list-style-image: none;
+    list-style-position: outside;
+    list-style-type: none;
+}
+
+hr {
+    color: #e0e0e0;
+    background-color: #e0e0e0;
+    height: 1px;
+    margin: 3px 0;
+    border: 0;
+}
+
+pre, code {
+    font-size: 12px;
+    font-family: "MonacoB", monospace;
+    line-height: 1.3em;
+}
+
+form {
+    display: inline;
+}
+
+::-moz-selection {background-color: #d7e7f4; text-shadow:none; color: #444;}
+::selection {background-color: #d7e7f4; text-shadow:none; color: #444;}
+
+.fixed {
+    min-height: 1px;
+} .fixed:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+
+.uc {text-transform: uppercase;}
+.lc {text-transform: lowercase;}
+.cc {text-transform: capitalize;}
+
+.floatl {float: left;}
+.floatr {float: right;}
+
+.tac {text-align: center;}
+.tal {text-align: left;}
+.tar {text-align: right;}

@@ -1,0 +1,26 @@
+#editor {
+    cursor: text;
+    border: 1px solid #212121;
+    width: 99.7%; height: 250px;
+} #editor.editor-focus {
+    /*background-color: #ffe;*/
+    outline: 1px solid #212121;
+}
+
+#item_content {visibility: hidden; position: absolute; width: 0; height: 0;}
+
+.ss-admin-editor .fa {
+    cursor: pointer;
+    color: #444;
+    font-size: 12px;
+    line-height: 12px;
+    text-align: center;
+    display: inline-block;
+    padding: 3px 4px;
+    min-width: 12px;
+    border: 1px solid #c0c0c0;
+    background-color: #f7f7f7;
+} .ss-admin-editor .fa.fa-active {
+    border: 1px solid #a0a0a0;
+    background-color: #e0e0e0;
+}

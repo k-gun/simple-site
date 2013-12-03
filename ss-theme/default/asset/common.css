@@ -1,0 +1,131 @@
+/*tasarim: http://www.tilde.io/*/
+
+.ss-head {
+    padding: 12px;
+    background-color: #121B21;
+    box-shadow: 0 3px 3px -2px rgba(0,0,0,0.5);
+    position: relative;
+    z-index: 10;
+}
+.ss-body {
+    margin: 0 0 30px;
+}
+.ss-foot {
+    font-size: 80%;
+}
+
+.ss-foot hr {
+    margin: 30px 0 30px;
+}
+
+.ss-container {
+    width: 850px;
+    margin: 0 auto;
+}
+
+.suh-head {
+    font-size: 135%;
+    font-weight: bold;;
+    font-family: "Oswald";
+    line-height: 1.35em;
+    margin-bottom: 12px;
+}
+
+.ss-head-menu {
+} .ss-head-menu ul {
+    float: right;
+} .ss-head-menu ul li {
+    float: left;
+} .ss-head-menu ul li a {
+    color: #fff;
+    padding: 9px 12px;
+    font-size: 90%;
+    font-weight: bold;
+    line-height: 120%;
+} .ss-head-menu ul li a:hover {
+} .ss-head-menu ul li a:first-child {
+    padding-left: 0;
+} .ss-head-menu ul li.home {
+    border-right: 1px dotted #f0f0f0;
+    margin-right: 12px;
+}
+
+.ss-foot-menu {
+} .ss-foot-menu ul {
+    float: left;
+} .ss-foot-menu ul li {
+    float: left;
+    padding: 0 6px;
+} .ss-foot-menu ul li:first-child {
+    padding-left: 0;
+} .ss-foot-menu ul li a {
+    color: inherit;
+} .ss-foot-copy {
+    color: #999;
+    font-size: 80%;
+} .ss-foot-love {
+    float: right;
+    font-size: 80%;
+} .ss-foot-love a {
+    color: #777;
+}
+
+.ss-body-blue {
+    color: #fff;
+    padding: 70px 0 50px;
+    text-align: center;
+    background-color: #00AFC4;
+    border-bottom: 1px solid #121B21;
+    margin-bottom: 50px;
+} .ss-body-blue-sep {
+    height: 0px;
+    margin-bottom: 60px;
+    border-top: 1px solid #555;
+    position: relative;
+} .ss-body-blue-sep span {
+    position: relative;
+    top: -12px;
+    padding: 0 12px;
+    display: inline-block;
+    background-color: #00AFC4;
+    color: #555;
+    font-weight: bold;
+    font-family: "Oswald";
+    letter-spacing: 3px;
+    /*text-shadow: 1px 1px #EFEEED;*/
+} .ss-body-blue-slogan {
+    font-size: 200%;
+    font-weight: bold;
+    font-family: "Oswald";
+    text-transform: uppercase;
+    margin-bottom: 32px;
+} .ss-body-blue-content {
+    font-size: 120%;
+    line-height: 1.55em;
+}
+
+.ss-body-boxes {
+} .ss-body-box {
+    float: left;
+    width: 30%;
+    min-height: 100px;
+    padding: 13px;
+} .ss-body-box div p {
+    margin: 9px 0 0;
+    font-size: 80%;
+}
+
+.ss-item {
+    padding-top: 30px;
+} .ss-item-title {
+    font-size: 180%;
+    font-weight: bold;
+    margin-bottom: 30px;
+} .ss-item-content {
+
+} .ss-item-image {
+    float: left;
+    width: 350px; height: 350px;
+    margin: 4px 14px 14px 0;
+    border: 1px solid #e0e0e0;
+}

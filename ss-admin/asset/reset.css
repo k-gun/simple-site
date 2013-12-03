@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    font-family: helvetica, arial, sans-serif;
+}
+
+body {
+    color: #555;
+    font-size: 12px;
+    line-height: 1.4em;
+    background-color: #fff;
+}
+
+a {
+    color: #256e96;
+    cursor: pointer;
+    text-decoration: none;
+} a:hover {
+    text-decoration: underline;
+}
+
+ol, ul {
+    list-style: none;
+    list-style-image: none;
+    list-style-position: outside;
+    list-style-type: none;
+}
+
+hr {
+    color: #e0e0e0;
+    background-color: #e0e0e0;
+    height: 1px;
+    margin: 3px 0;
+    border: 0;
+}
+
+pre, code {
+    font-size: 12px;
+    font-family: "MonacoB", monospace;
+    line-height: 1.3em;
+}
+
+form {
+    display: inline;
+}
+
+textarea {
+    resize: vertical;
+}
+
+input, textarea, select {
+    padding: 4px;
+    font-size: 100%;
+    border: 1px solid #212121;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, textarea:focus, select:focus {
+    background-color: #ffe;
+    outline: 1px solid #212121;
+}
+
+input[type="submit"], input[type="reset"], input[type="button"] {
+    cursor: pointer;
+    background-color: #f0f0f0;
+}
+
+table {
+    border-collapse: collapse;
+} table tr {
+    vertical-align: top;
+} table th {
+    text-align: left;
+    font-size: 14px;
+    font-weight: bold;
+} table th, table td {
+    padding: 3px 4px;
+}
+
+small, .small {
+    font-size: 80%;
+}
+
+::-moz-selection {background-color: #d7e7f4; text-shadow:none; color: #444;}
+::selection {background-color: #d7e7f4; text-shadow:none; color: #444;}
+
+.fixed {
+    min-height: 1px;
+} .fixed:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+
+.uc {text-transform: uppercase;}
+.lc {text-transform: lowercase;}
+.cc {text-transform: capitalize;}
+
+.floatl {float: left;}
+.floatr {float: right;}
+
+.tac {text-align: center;}
+.tal {text-align: left;}
+.tar {text-align: right;}
