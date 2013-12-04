@@ -49,6 +49,8 @@
 } .ss-admin-aside-box h3 {
     font-size: 135%;
     margin-bottom: 6px;
+} .ss-admin-aside-box h3 .fa {
+    padding-right: 3px;
 } .ss-admin-aside-box ul li {
     font-size: 110%;
     line-height: 130%;

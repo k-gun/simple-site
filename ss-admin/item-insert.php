@@ -9,6 +9,8 @@ if (isset($_POST['item'])) {
     $id = ss_admin_item_insert($_POST['item']);
     redirect('/ss-admin/item-update?id=%d&success=1&action=inserted', $id);
 }
+
+print DRAFT_LAZIM
 ?>
 
 <link href="<?=ss_admin_asset('editor.css')?>" rel="stylesheet">

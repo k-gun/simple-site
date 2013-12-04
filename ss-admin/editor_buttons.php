@@ -1,6 +1,6 @@
 
 <span class="floatr">
-    <i class="fa fa-caret-square-o-down e-toggle-editor" role="button" title="Toggle rich-edit"></i>
+    <i class="fa fa-code e-toggle-editor b" role="button" title="Toggle rich-edit"></i>
     <i class="fa fa-plus-square" title=""></i>
     <i class="fa fa-minus-square" title=""></i>
 </span>

@@ -12,7 +12,7 @@ if (isset($_POST['item'])) {
 }
 
 $item = ss_admin_item_get($id);
-// if (no($item)) redirect('/ss-admin/item-list');
+if (no($item)) redirect('/ss-admin/item-list');
 ?>
 
 <link href="<?=ss_admin_asset('editor.css')?>" rel="stylesheet">

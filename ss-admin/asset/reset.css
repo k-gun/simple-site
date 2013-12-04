@@ -109,6 +109,10 @@ small, .small {
 .tal {text-align: left;}
 .tar {text-align: right;}
 
+.i {font-style: italic;}
+.b {font-weight: bold;}
+.u {text-decoration: underline;}
+
 .red {color: red;}
 
 .notice, .error, .success, .tip {padding:5px 7px; margin-bottom:12px; border:1px solid; color:#555}
