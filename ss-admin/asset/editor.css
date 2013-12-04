@@ -1,21 +1,23 @@
 #editor {
     cursor: text;
     border: 1px solid #212121;
-    width: 99.7%; height: 250px;
+    width: 99.7%;
+    height: 250px;
+    transition: height 275ms ease;
 } #editor.editor-focus {
     /*background-color: #ffe;*/
     outline: 1px solid #212121;
 }
 
-#item_content {
+#itemContent {
     width: 0;
     height: 0;
     position: absolute;
     visibility: hidden;
 }
-#item_content.visible {
-    width: 99.7%;
-    height: 250px;
+#itemContent.item-content-visible {
+    width: 98.5%;
+    height: 242px;
     position: relative;
     visibility: visible;
 }
@@ -29,11 +31,15 @@
     display: inline-block;
     padding: 3px 4px;
     min-width: 12px;
-    border: 1px solid #c0c0c0;
-    background-color: #f7f7f7;
+    text-shadow: 0 1px 1px #fff;
+    border-radius: 2px;
+    border: 1px solid #999;
+    background: #f0f0f0;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc));
+    background: -moz-linear-gradient(top, #fff, #ccc);
 } .ss-admin-editor .fa:hover {
-    border: 1px solid #a0a0a0;
+    border: 1px solid #777;
 } .ss-admin-editor .fa.fa-active {
-    border: 1px solid #a0a0a0;
-    background-color: #e0e0e0;
+    border: 1px solid #777;
+    background: #c0c0c0;
 }

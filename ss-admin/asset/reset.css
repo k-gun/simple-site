@@ -54,6 +54,7 @@ input, textarea, select {
     font-size: 100%;
     background-color: #fff;
     border: 1px solid #212121;
+    vertical-align: middle;
 }
 
 input[type="text"]:focus, input[type="password"]:focus, textarea:focus, select:focus {
@@ -63,6 +64,8 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus, select:f
 
 input[type="submit"], input[type="reset"], input[type="button"] {
     cursor: pointer;
+    padding: 4px 7px;
+    font-weight: bold;
     background-color: #f0f0f0;
 }
 
@@ -105,3 +108,13 @@ small, .small {
 .tac {text-align: center;}
 .tal {text-align: left;}
 .tar {text-align: right;}
+
+.red {color: red;}
+
+.notice, .error, .success, .tip {padding:5px 7px; margin-bottom:12px; border:1px solid; color:#555}
+.notice {background-color:#fff3e1; border-color:#ffe2af}
+.error {background-color:#fde5e1; border-color:#fac6bd}
+.success {background-color:#f4f5dd; border-color:#dedfb5}
+.tip {background-color:#f7f7f7; border-color:#ccc}
+
+.noselect, .fa {-moz-user-select: none; -webkit-user-select: none; user-select: none;}

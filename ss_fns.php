@@ -54,7 +54,8 @@ function to_object($data) {
 
 // @tmp
 function slug($text, $lc = true) {
-    $text = preg_replace(array('~[^a-z-]~i', '~-+~'), '-', trim($text));
+    $text = preg_replace(array('~[^a-z0-9-]~i', '~-+~'), '-', trim($text));
+    $text = trim($text, '-');
     return !$lc ? $text : strtolower($text);
 }
 
@@ -77,6 +78,7 @@ function redirect() {
 function get_array_value($array, $key, $defval = null) {
     return isset($array[$key]) ? $array[$key] : $defval;
 }
+// Bunlara gerek var mi?
 function get_get_value($key, $defval = null) {
     return get_array_value($_GET, $key, $defval);
 }

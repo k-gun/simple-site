@@ -47,9 +47,11 @@
 } .ss-admin-aside-box {
     margin-bottom: 12px;
 } .ss-admin-aside-box h3 {
-    font-size: 100%;
+    font-size: 135%;
+    margin-bottom: 6px;
 } .ss-admin-aside-box ul li {
-    font-size: 90%;
+    font-size: 110%;
+    line-height: 130%;
 }
 
 .ss-admin-subhead {
@@ -72,18 +74,29 @@
     font-size: 14px;
     font-weight: bold;
 } .ss-admin-item-list-content {
+} .ss-admin-item-list-actions {
+    font-size: 11px;
+    text-align: center;
+    white-space: nowrap;
 }
 
-.ss-admin-item-update {
+.ss-admin-item-form {
     display: block;
     margin-top: 12px;
-} .ss-admin-item-update-text {
+} .ss-admin-item-form-text {
     width: 98.5%;
-} .ss-admin-item-update div {
+} .ss-admin-item-form div {
     margin-bottom: 12px;
+} .ss-admin-item-form-submit {
+    border-top: 1px solid #212121;
+    padding-top: 12px;
 }
 
-.pager {
+select.ss-admin-item-status {
+    padding: 0;
+}
+
+.ss-admin-pager {
     border-top: 1px solid #212121;
     margin-top: 22px;
     padding-top: 12px;

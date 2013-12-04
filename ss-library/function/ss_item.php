@@ -1,7 +1,8 @@
 <?php
 // Defines
-define('SS_ITEM_STATUS_WAITING', 'waiting');
-define('SS_ITEM_STATUS_PUBLISHED', 'published');
+define('SS_ITEM_STATUS_WAITING',    'waiting');
+define('SS_ITEM_STATUS_PUBLISHED',  'published');
+define('SS_ITEM_STATUS_DELETED',    'deleted');
 
 function ss_item_get($opts = null) {
     $opts = get_options($opts);
@@ -121,7 +122,9 @@ function the_itemContentSub($item, Closure $callback = null, $opts = null, $sub 
     $opts['strip'] = true;
     $content = the_itemContent($item, $callback, $opts);
     $content = mb_substr($content, 0, $sub);
-    $content = mb_substr($content, 0, mb_strrpos($content, ' '));
+    if (($pos = mb_strrpos($content, ' ')) !== false) {
+        $content = mb_substr($content, 0, $pos);
+    }
     return $content;
 }
 
@@ -137,4 +140,9 @@ function the_itemImages($item, Closure $callback = null) {
         }
     }
     return ss_item_applyCallback($item_images);
+}
+
+function the_itemCommentable($item) {
+    $item = to_array($item);
+    return (bool) $item['allow_comment'];
 }

@@ -15,6 +15,8 @@ $cfg['site.linkFormats'] = array(
     'item' => '/item/{title_slug}.html',
 );
 
+$cfg['item.status'] = array('waiting', 'published', 'deleted');
+
 $cfg['routes'] = array(
     'home' => array(
         'file' => 'home.php',
@@ -34,12 +36,12 @@ $cfg['routes'] = array(
             '~^/item[/\-](?<id>\d+)(\.html|)$~i',
             // /item/123/lorem-ipsum & /item/123/lorem-ipsum.html
             // /item-123-lorem-ipsum & /item-123-lorem-ipsum.html
-            '~^/item[/\-](?<id>\d+)[/\-](?<slug>[a-z-]+)(\.html|)$~i',
+            '~^/item[/\-](?<id>\d+)[/\-](?<slug>[a-z0-9-]+)(\.html|)$~i',
             // /lorem-ipsum/123.item & /lorem-ipsum/123.html
             // /lorem-ipsum-123.item & /lorem-ipsum-123.html
-            '~^/(?<slug>[a-z-]+)[/\-](?<id>\d+)\.(item|html)$~i',
+            '~^/(?<slug>[a-z0-9-]+)[/\-](?<id>\d+)\.(item|html)$~i',
             // /item/lorem-ipsum.html
-            '~^/item/(?<slug>[a-z-]+)(\.html|)$~i',
+            '~^/item/(?<slug>[a-z0-9-]+)(\.html|)$~i',
         )
     )
 );

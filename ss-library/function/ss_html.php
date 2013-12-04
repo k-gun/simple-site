@@ -17,10 +17,20 @@ function ss_html_selected($a, $b, $strict = false) {
     }
 }
 
-function ss_html_selectOption(Array $data, $cur = null, Callable $fn = null) {
+function ss_html_selectOption(Array $data, $cur = null, $merge = false, Callable $fn = null) {
     if (is_callable($fn)) {
         $data = $fn($data);
     }
+
+    if ($merge) {
+        $_data = array();
+        foreach ($data as $d) {
+            $_data[$d] = $d;
+        }
+        $data =& $_data;
+        unset($_data);
+    }
+
     $options = '';
     foreach ($data as $key => $val) {
         $selected = ss_html_selected($key, $cur);

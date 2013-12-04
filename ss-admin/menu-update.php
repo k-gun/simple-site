@@ -33,7 +33,7 @@ $menu = ss_mysql_get("SELECT * FROM $table WHERE id = %d", $id);
 
     <?php if (!no($menu)): ?>
 
-    <form method="post" action="" class="ss-admin-item-update">
+    <form method="post" action="" class="ss-admin-item-form">
         <input type="hidden" name="id" value="<?=$menu->id?>">
         <div>Text:<br> <input type="text" name="link_text" value="<?=$menu->link_text?>" size="50"></div>
         <div>Link:<br> <input type="text" name="link_href" value="<?=$menu->link_href?>" size="50"></div>
@@ -43,7 +43,8 @@ $menu = ss_mysql_get("SELECT * FROM $table WHERE id = %d", $id);
                 <option value="head"<?=ss_html_selected($menu->position, 'head')?>>head</option>
                 <option value="foot"<?=ss_html_selected($menu->position, 'foot')?>>foot</option>
             </select></div>
-        <div><input type="submit" name="submit" value="Submit"></div>
+
+        <div class="ss-admin-item-form-submit"><input type="submit" name="submit" value="Submit"></div>
     </form>
 
     <?php else: ?>

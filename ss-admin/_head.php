@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="<?=ss_admin_asset('admin.css')?>">
 
     <script src="<?=ss_admin_asset('mii-all.js')?>"></script>
+    <script src="<?=ss_admin_asset('admin.js')?>"></script>
 </head>
 <body>
 
@@ -18,7 +19,7 @@
     <div class="ss-admin-container fixed">
 
         <div class="ss-admin-head-logo">
-            <a href="<?=ss_admin_link('/')?>"><img src="<?=ss_admin_image('logo.png')?>" alt="Home"></a>
+            <a href="<?=ss_admin_link('/')?>"><img src="" alt="Home"></a>
         </div>
 
         <div class="ss-admin-head-menu">

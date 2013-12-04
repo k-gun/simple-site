@@ -5,6 +5,7 @@
         <h3>Item</h3>
         <ul>
             <li><a href="<?=ss_admin_link('item-list')?>">List items</a></li>
+            <li><a href="<?=ss_admin_link('item-list?status=%s', SS_ITEM_STATUS_DELETED)?>">List items (<?=SS_ITEM_STATUS_DELETED?>)</a></li>
             <li><a href="<?=ss_admin_link('item-insert')?>">Add new item</a></li>
         </ul>
     </div>

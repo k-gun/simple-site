@@ -73,7 +73,6 @@ function ss_mysql_query($query, $params = array()) {
 
 function ss_mysql_get($query, $params = array(), $fetchType = ORMLikeDatabase::FETCH_OBJECT, $fetchClass = null) {
     $db = ss_mysql_init();
-    $rs = null;
     try {
         return $db->get($query, $params, $fetchType, $fetchClass);
     } catch (ORMLikeException $e) {
@@ -146,7 +145,9 @@ function ss_mysql_rowsAffected() { $db = ss_mysql_init(); return $db->affectedRo
 
 function ss_mysql_setFail($error) {
     if (SS_LOCAL) {
-        print $error;
+        print('<pre>');
+        throw new ORMLikeException($error);
+        print('</pre>');
     }
     ss_set('db.mysql.error', trim($error));
 }

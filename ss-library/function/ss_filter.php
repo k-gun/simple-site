@@ -7,33 +7,46 @@ define('SS_FILTER_TYPE_DOUBLE', 'double');
 define('SS_FILTER_TYPE_STRING', 'string');
 
 function ss_filter($input, $encode = false, $type = SS_FILTER_TYPE_STRING) {
-    // Swap args (encode as type)
-    if (!is_bool($encode)) {
+    // Trim first
+    $input = trim($input);
+
+    $nullable = false;
+    // Swap args (type as nullable)
+    if (is_bool($type)) {
+        $nullable = $type;
+    }
+    // Swap args (encode as type, SS_FILTER_*)
+    if (!is_bool($encode) && defined($encode)) {
         $type = $encode;
     }
 
-    if (($input = trim($input)) !== '') {
-        switch ($type) {
-            case SS_FILTER_TYPE_INT:
-                $input = (int) $input; break;
-            case SS_FILTER_TYPE_FLOAT:
-            case SS_FILTER_TYPE_DOUBLE:
-                $input = sprintf('%F', $input); break;
-            case SS_FILTER_TYPE_BOOL:
-                $input = (bool) $input; break;
-            case SS_FILTER_TYPE_STRING:
-            default:
-                $input = str_ireplace(array("\0", '%00', "\x1a", '%1a'), '', $input);
-                if ($encode) {
-                    $input = ss_filter_htmlEncode($input);
-                }
-                break;
-        }
-        return $input;
+    // Return NULL
+    if ($nullable && $input === '') {
+        return null;
     }
 
-    // NULL
-    return null;
+    // Return by type
+    switch ($type) {
+        case SS_FILTER_TYPE_INT:
+            $input = (int) $input;
+            break;
+        case SS_FILTER_TYPE_FLOAT:
+        case SS_FILTER_TYPE_DOUBLE:
+            $input = sprintf('%F', $input);
+            break;
+        case SS_FILTER_TYPE_BOOL:
+            $input = (bool) $input;
+            break;
+        case SS_FILTER_TYPE_STRING:
+        default:
+            $input = str_ireplace(array("\0", '%00', "\x1a", '%1a'), '', $input);
+            if ($encode) {
+                $input = ss_filter_htmlEncode($input);
+            }
+            break;
+    }
+
+    return $input;
 }
 
 function ss_filter_arrayValue($array, $key, $encode = false, $type = SS_FILTER_TYPE_STRING) {

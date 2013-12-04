@@ -5,19 +5,32 @@
 <?php ss_admin_getAside(); ?>
 
 <?php
-$items = ss_admin_getItems();
+if ($delete = ss_filter_getValue('delete', SS_FILTER_TYPE_INT)) {
+    ss_admin_item_delete($delete);
+    redirect('/ss-admin/item-list?status=%s', SS_ITEM_STATUS_DELETED);
+}
+
+if (($_get_id = get_get_value('id', SS_FILTER_TYPE_INT)) &&
+    ($_get_status = ss_filter_getValue('set-status'))) {
+    ss_admin_item_setStatus($_get_id, $_get_status);
+}
+
+$items = ss_admin_item_getAll();
 $pager = ss_get('pager');
-// pre($pager);
 ?>
 
 <div class="ss-admin-page-content">
 
     <div class="ss-admin-subhead">
 
-        <h3>Items</h3>
+        <h3>Items <?php
+            $_get_status = ss_filter_getValue('status');
+            if ($_get_status) printf('<small>(%s)</small>', $_get_status);
+        ?></h3>
 
         <div class="floatr">
             <form action="" method="get">
+                <input type="hidden" name="status" value="all">
                 <input type="text" name="ssq" value="<?=ss_filter_getValue('ssq', true)?>">
                 <input type="submit" value="Go!">
             </form>
@@ -29,9 +42,9 @@ $pager = ss_get('pager');
     <table class="ss-admin-item-list">
 
         <tr>
-            <th>&nbsp;</th>
-            <th>Date</th>
-            <th>Status</th>
+            <th width="300">&nbsp;</th>
+            <th width="75">Date</th>
+            <th width="1">Status</th>
             <th width="1">&nbsp;</th>
         </tr>
 
@@ -41,29 +54,62 @@ $pager = ss_get('pager');
                 <div class="ss-admin-item-list-title"><?=the_itemTitle($item)?></div>
                 <div class="ss-admin-item-list-content"><?=the_itemContentSub($item, null, 'strip=1', 100)?></div>
             </td>
-            <td><?=the_item_dateTime($item)?></td>
-            <td><?=ucfirst($item->status)?></td>
-            <td nowrap>
-                &nbsp;
-                <a href="<?=the_itemLink($item)?>">View</a> - <a href="<?=ss_admin_link('item-update?id=%d', $item->id)?>">Edit</a>
+            <td><?=str_replace(' ', '<br>', the_item_dateTime($item))?></td>
+            <td><select class="ss-admin-item-status" data-id="<?=$item->id?>">
+                    <option value="">-change status-</option>
+                    <?php print ss_html_selectOption(cfg('item.status'), $item->status, true); ?>
+                </select></td>
+            <td class="ss-admin-item-list-actions">
+                <a href="<?=the_itemLink($item)?>">View</a> -
+                <a href="<?=ss_admin_link('item-update?id=%d', $item->id)?>">Edit</a>
+                <?php if ($item->status == SS_ITEM_STATUS_DELETED): ?>
+                <br>
+                <a href="<?=ss_admin_link('item-list?status=%s&delete=%d', SS_ITEM_STATUS_DELETED, $item->id)?>" onclick="return confirm('Delete the item permanently?')" class="red">Delete</a>
+                <?php endif; ?>
             </td>
         </tr>
         <?php endforeach; ?>
 
     </table>
 
-    <div class="ss-admin-pager">
-        <div class="pager">
-            <b>Page</b>: <?php print $pager->generate(); ?>
-        </div>
-    </div>
-
     <?php else: ?>
 
-    <br>No content found.
+    <br>No contents found.
 
     <?php endif; ?>
 
+    <div class="ss-admin-pager">
+        <div class="floatr">
+            <b>Status</b>:&nbsp;
+                <a href="<?=ss_admin_link('item-list?status=all')?>">All</a> &middot;
+                <a href="<?=ss_admin_link('item-list?status=%s', SS_ITEM_STATUS_WAITING)?>"><?=ucfirst(SS_ITEM_STATUS_WAITING)?></a> &middot;
+                <a href="<?=ss_admin_link('item-list?status=%s', SS_ITEM_STATUS_PUBLISHED)?>"><?=ucfirst(SS_ITEM_STATUS_PUBLISHED)?></a> &middot;
+                <a href="<?=ss_admin_link('item-list?status=%s', SS_ITEM_STATUS_DELETED)?>"><?=ucfirst(SS_ITEM_STATUS_DELETED)?></a>
+        </div>
+        <?php if (ss_has('pager')): ?>
+        <div class="pager">
+            <b>Page</b>: <?php print $pager->generate(); ?>
+        </div>
+    <?php endif; ?>
+    </div>
+
 </div>
+
+<script>
+mii.onReady(function($){
+    $.dom(".ss-admin-item-status").on("change", function(){
+        var id = this.getAttribute("data-id");
+        var value = this.value;
+        var status = "<?=ss_filter_getValue('status')?>";
+        switch (value) {
+            case "<?=SS_ITEM_STATUS_WAITING?>":
+            case "<?=SS_ITEM_STATUS_PUBLISHED?>":
+            case "<?=SS_ITEM_STATUS_DELETED?>":
+                redirect("/ss-admin/item-list?status=%s&set-status=%s&id=%s", status, value, id);
+                break;
+        }
+    })
+});
+</script>
 
 <?php ss_admin_getFoot(); ?>

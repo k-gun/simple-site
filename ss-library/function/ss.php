@@ -43,6 +43,10 @@ function ss_get($key, $defval = null) {
     return get_array_value($GLOBALS['ss'], $key);
 }
 
+function ss_has($key) {
+    return isset($GLOBALS['ss'][$key]);
+}
+
 function ss_data() {
     return ss_get('data');
 }

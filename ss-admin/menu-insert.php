@@ -28,7 +28,7 @@ if (isset($_POST['submit'])) {
         <h3>Add new menu item</h3>
     </div>
 
-    <form method="post" action="" class="ss-admin-item-update">
+    <form method="post" action="" class="ss-admin-item-form">
         <div>Text:<br> <input type="text" name="link_text" size="50"></div>
         <div>Link:<br> <input type="text" name="link_href" size="50"></div>
         <div>Sort:<br> <input type="text" name="sort" size="5"></div>
@@ -37,7 +37,8 @@ if (isset($_POST['submit'])) {
                 <option value="head">head</option>
                 <option value="foot">foot</option>
             </select></div>
-        <div><input type="submit" name="submit" value="Submit"></div>
+
+        <div class="ss-admin-item-form-submit"><input type="submit" name="submit" value="Submit"></div>
     </form>
 
 </div>
