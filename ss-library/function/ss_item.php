@@ -3,6 +3,7 @@
 define('SS_ITEM_STATUS_WAITING',    'waiting');
 define('SS_ITEM_STATUS_PUBLISHED',  'published');
 define('SS_ITEM_STATUS_DELETED',    'deleted');
+define('SS_ITEM_STATUS_DRAFT',      'draft');
 
 function ss_item_get($opts = null) {
     $opts = get_options($opts);

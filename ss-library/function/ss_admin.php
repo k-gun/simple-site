@@ -30,13 +30,10 @@ function ss_admin_item_get($id) {
 function ss_admin_item_getAll() {
     $where = array('1=1');
 
-    $where['status'] = ss_mysql_prepare('status != %s', SS_ITEM_STATUS_DELETED);
+    $where['status'] = ss_mysql_prepare('status NOT IN (%s)', array(array(SS_ITEM_STATUS_DELETED, SS_ITEM_STATUS_DRAFT)));
 
     $item_status = ss_filter_getValue('status');
-    if ($item_status == SS_ITEM_STATUS_WAITING ||
-        $item_status == SS_ITEM_STATUS_PUBLISHED ||
-        $item_status == SS_ITEM_STATUS_DELETED
-    ) {
+    if (in_array($item_status, cfg('item.status'))) {
         $where['status'] = ss_mysql_prepare('status = %s', $item_status);
     } elseif ($item_status == 'all') {
         unset($where['status']);

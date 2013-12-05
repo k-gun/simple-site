@@ -59,6 +59,16 @@ function slug($text, $lc = true) {
     return !$lc ? $text : strtolower($text);
 }
 
+function token($length = 40, $extra = null) {
+    $token = ($extra === null)
+        ? hash('sha512', uniqid(mt_rand(), true) . microtime())
+        : hash('sha512', uniqid(mt_rand(), true) . microtime() . $extra);
+    if ($length) {
+        $token = substr($token, 0, $length);
+    }
+    return $token;
+}
+
 function redirect() {
     $args = func_get_args();
     if (count($args) == 1) {
@@ -92,6 +102,15 @@ function get_uri($remove_query = true) {
         $uri = substr($uri, 0, $pos);
     }
     return $uri;
+}
+
+function get_image_extension($mime) {
+    // array_search?
+    foreach (cfg('media.image.mimeTypes') as $key => $val) {
+        if ($key == $mime) {
+            return $val;
+        }
+    }
 }
 
 function get_options($options) {

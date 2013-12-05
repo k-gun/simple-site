@@ -38,7 +38,7 @@ setTimeout(function(){
     </div>
 
     <form method="post" action="<?=get_uri(!1)?>" class="ss-admin-item-form">
-        <div><input type="text" name="item[title]" placeholder="Title" class="ss-admin-item-form-text" value="<?=ss_filter($item->title)?>"></div>
+        <div><input type="text" name="item[title]" id="itemTitle" placeholder="Title" class="ss-admin-item-form-text" value="<?=ss_filter($item->title)?>"></div>
         <div class="ss-admin-editor fixed">
             <?php include('editor_buttons.php'); ?>
         </div>
@@ -53,7 +53,12 @@ setTimeout(function(){
              <label>Allow comments: <input type="checkbox" name="item[allow_comment]" value="1"<?=ss_html_checked($item->allow_comment,1)?>></label>
         </div>
 
-        <div class="ss-admin-item-form-submit"><input type="submit" name="submit" value="Submit"></div>
+        <div class="ss-admin-item-form-submit">
+            <span class="floatr"></span>
+            <input type="submit" name="submit" value="Submit">
+        </div>
+
+        <input type="hidden" name="item[draft_token]" value="<?=$item->draft_token?>">
     </form>
 
 </div>
@@ -63,5 +68,7 @@ mii.onReady(function($){
     $ss.editor.frame().document.body.innerHTML = $ss.editor.$("itemContent").value;
 });
 </script>
+
+<script src="<?=ss_admin_asset('editor-autosave.js')?>"></script>
 
 <?php ss_admin_getFoot(); ?>

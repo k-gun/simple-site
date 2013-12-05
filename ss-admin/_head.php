@@ -9,8 +9,9 @@
     <link rel="stylesheet" href="<?=ss_admin_asset('reset.css')?>">
     <link rel="stylesheet" href="<?=ss_admin_asset('admin.css')?>">
 
-    <script src="<?=ss_admin_asset('mii-all.js')?>"></script>
+    <script src="<?=ss_admin_asset('mii/mii-all.php')?>"></script>
     <script src="<?=ss_admin_asset('admin.js')?>"></script>
+    <script src="<?=ss_admin_asset('modal.js')?>"></script>
 </head>
 <body>
 

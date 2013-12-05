@@ -26,5 +26,5 @@
     &nbsp;|&nbsp;
     <i class="fa fa-link" onclick="$ss.editor.exec('createlink')" title="Insert link"></i>
     <i class="fa fa-unlink" onclick="$ss.editor.exec('unlink')" title="Remove link"></i>
-    <i class="fa fa-picture-o" onclick="ss.modal.open()" title="Insert image"></i>
+    <i class="fa fa-picture-o" title="Insert image"></i>
 </span>

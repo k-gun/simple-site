@@ -42,6 +42,7 @@ load_function('ss');
 load_function('ss_intl');
 load_function('ss_html');
 load_function('ss_route');
+load_function('ss_media');
 load_function('ss_item');
 load_function('ss_menu');
 load_function('ss_theme');

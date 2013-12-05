@@ -25,7 +25,7 @@ $pager = ss_get('pager');
 
         <h3>Items <?php
             $_get_status = ss_filter_getValue('status');
-            if ($_get_status) printf('<small>(%s)</small>', $_get_status);
+            if ($_get_status) printf('(<span class="gray">%s</span>)', $_get_status);
         ?></h3>
 
         <div class="floatr">
@@ -81,10 +81,15 @@ $pager = ss_get('pager');
     <div class="ss-admin-pager">
         <div class="floatr">
             <b>Status</b>:&nbsp;
+                <a href="<?=ss_admin_link('item-list')?>">None</a> &middot;
                 <a href="<?=ss_admin_link('item-list?status=all')?>">All</a> &middot;
-                <a href="<?=ss_admin_link('item-list?status=%s', SS_ITEM_STATUS_WAITING)?>"><?=ucfirst(SS_ITEM_STATUS_WAITING)?></a> &middot;
-                <a href="<?=ss_admin_link('item-list?status=%s', SS_ITEM_STATUS_PUBLISHED)?>"><?=ucfirst(SS_ITEM_STATUS_PUBLISHED)?></a> &middot;
-                <a href="<?=ss_admin_link('item-list?status=%s', SS_ITEM_STATUS_DELETED)?>"><?=ucfirst(SS_ITEM_STATUS_DELETED)?></a>
+                <?php
+                $status_links = array();
+                foreach (cfg('item.status') as $status) {
+                    $status_links[] = sprintf('<a href="/ss-admin/item-list?status=%s">%s</a>', $status, ucfirst($status));
+                }
+                print join(' &middot; ', $status_links);
+                ?>
         </div>
         <?php if (ss_has('pager')): ?>
         <div class="pager">
@@ -101,12 +106,8 @@ mii.onReady(function($){
         var id = this.getAttribute("data-id");
         var value = this.value;
         var status = "<?=ss_filter_getValue('status')?>";
-        switch (value) {
-            case "<?=SS_ITEM_STATUS_WAITING?>":
-            case "<?=SS_ITEM_STATUS_PUBLISHED?>":
-            case "<?=SS_ITEM_STATUS_DELETED?>":
-                redirect("/ss-admin/item-list?status=%s&set-status=%s&id=%s", status, value, id);
-                break;
+        if (value) {
+           redirect("/ss-admin/item-list?status=%s&set-status=%s&id=%s", status, value, id);
         }
     })
 });

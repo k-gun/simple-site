@@ -9,8 +9,6 @@ if (isset($_POST['item'])) {
     $id = ss_admin_item_insert($_POST['item']);
     redirect('/ss-admin/item-update?id=%d&success=1&action=inserted', $id);
 }
-
-print DRAFT_LAZIM
 ?>
 
 <link href="<?=ss_admin_asset('editor.css')?>" rel="stylesheet">
@@ -23,7 +21,7 @@ print DRAFT_LAZIM
     </div>
 
     <form method="post" action="<?=get_uri()?>" class="ss-admin-item-form">
-        <div><input type="text" name="item[title]" placeholder="Title" class="ss-admin-item-form-text"></div>
+        <div><input type="text" name="item[title]" id="itemTitle" placeholder="Title" class="ss-admin-item-form-text"></div>
         <div class="ss-admin-editor fixed">
             <?php include('editor_buttons.php'); ?>
         </div>
@@ -32,15 +30,22 @@ print DRAFT_LAZIM
             <textarea name="item[content]" id="itemContent" rows="15" class="ss-admin-item-form-text"></textarea>
         </div>
         <div><select name="item[status]">
-                <?php print ss_html_selectOption(cfg('item.status'), null, true); ?>
+                <?php print ss_html_selectOption(cfg('item.status'), SS_ITEM_STATUS_DRAFT, true); ?>
              </select>
              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
              <label>Allow comments: <input type="checkbox" name="item[allow_comment]" value="1" checked></label>
         </div>
 
-        <div class="ss-admin-item-form-submit"><input type="submit" name="submit" value="Submit"></div>
+        <div class="ss-admin-item-form-submit">
+            <span class="floatr"></span>
+            <input type="submit" name="submit" value="Submit">
+        </div>
+
+        <input type="hidden" name="item[draft_token]" value="<?=token(32)?>">
     </form>
 
 </div>
+
+<script src="<?=ss_admin_asset('editor-autosave.js')?>"></script>
 
 <?php ss_admin_getFoot(); ?>

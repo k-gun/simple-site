@@ -15,7 +15,7 @@ $cfg['site.linkFormats'] = array(
     'item' => '/item/{title_slug}.html',
 );
 
-$cfg['item.status'] = array('waiting', 'published', 'deleted');
+$cfg['item.status'] = array('draft', 'waiting', 'published', 'deleted');
 
 $cfg['routes'] = array(
     'home' => array(
@@ -45,6 +45,19 @@ $cfg['routes'] = array(
         )
     )
 );
+
+$cfg['media.image.base'] = '/upload';
+$cfg['media.image.widths'] = array(150, 300, 450, 750);
+$cfg['media.image.cropSize'] = 100;
+$cfg['media.image.mimeTypes'] = array(
+    'image/gif'   => 'gif',
+    'image/jpg'   => 'jpg',
+    'image/jpeg'  => 'jpeg',
+    'image/pjpeg' => 'jpeg',
+    'image/png'   => 'png',
+    'image/x-png' => 'png',
+);
+$cfg['media.image.maxUploadSize'] = 2097152; // 2MB
 
 $GLOBALS['cfg'] = $cfg;
 

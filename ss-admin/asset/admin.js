@@ -9,3 +9,9 @@ function printf() {
 function redirect() {
     window.location.href = printf.apply(null, arguments);
 }
+
+mii.onReady(function($){
+    $.dom("a[href='#']").on("click", function(e){
+        e.preventDefault();
+    });
+});

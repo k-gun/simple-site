@@ -48,7 +48,7 @@ mii.onReady(function($){
     };
 
     var itemContent = $ss.editor.$("itemContent");
-    itemContent.onkeyup = itemContent.onkeydown = function() {
+    itemContent.onchange = function() {
         setEditorHtml();
     };
 
@@ -77,6 +77,17 @@ mii.onReady(function($){
             $.dom("#editor, .ss-admin-buttons").show(0);
             $.dom("#itemContent").removeClass("item-content-visible");
         }
+    });
+
+    // Image modal
+    ssae.find(".fa-picture-o").on("click", function(){
+        var modal = new $ss.modal({width: 750, height: 450});
+        modal.open("Insert Image", "", function(){
+            var $iframe = $.dom("<iframe>");
+            $iframe.setAttr({width: "100%", height: "98%", frameBorder: 0, src: "/ss-admin/media_iframe.php"});
+            // $iframe.setStyle("border", "1px solid #000");
+            $iframe.appendTo(modal.body);
+        });
     });
 
     // Set original height
