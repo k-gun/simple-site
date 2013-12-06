@@ -3,8 +3,8 @@
 define('SS_LOCAL', ($_SERVER['SERVER_ADDR'] == '127.0.1.1'));
 
 
-// Settings: local
 if (SS_LOCAL) {
+    // Settings: local
     cfg('db.mysql', array(
         'host' => 'localhost',
         'name' => 'simple_site',
@@ -15,6 +15,6 @@ if (SS_LOCAL) {
         'table_prefix' => 'ss_',
     ));
 } else {
-// Settings: remote
-    // cfg('db.mysql', array());
+    // Settings: remote
+    cfg('db.mysql', array());
 }
