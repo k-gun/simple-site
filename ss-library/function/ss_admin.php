@@ -22,14 +22,18 @@ function ss_admin_image($filename) {
     return ss_admin_link("/image/$filename");
 }
 
+function ss_admin_hiliteImageSizes($src) {
+    return preg_replace('~(\d+)x(\d+)~i', '<span>\\1x\\2</span>', $src);
+}
+
+// Items
 function ss_admin_item_get($id) {
     $table = ss_mysql_table('item');
-    return ss_mysql_get("SELECT * FROM $table WHERE 1=1 AND id = %d", $id);
+    return ss_mysql_get("SELECT * FROM $table WHERE id = %d LIMIT 1", $id);
 }
 
 function ss_admin_item_getAll() {
     $where = array('1=1');
-
     $where['status'] = ss_mysql_prepare('status NOT IN (%s)', array(array(SS_ITEM_STATUS_DELETED, SS_ITEM_STATUS_DRAFT)));
 
     $item_status = ss_filter_getValue('status');
@@ -132,6 +136,61 @@ function ss_admin_item_setStatus($id, $status) {
     }
 }
 
-function ss_admin_hiliteImageSizes($src) {
-    return preg_replace('~(\d+)x(\d+)~i', '<span>\\1x\\2</span>', $src);
+// Comments
+function ss_admin_comment_get($id) {
+    $table = ss_mysql_table('item_comment');
+    return ss_mysql_get("SELECT * FROM $table WHERE id = %d LIMIT 1", $id);
+}
+
+function ss_admin_comment_getAll() {
+    $where = array('1=1');
+
+    $item_status = ss_filter_getValue('status');
+    if ($item_status == SS_COMMENT_STATUS_WAITING || $item_status == SS_COMMENT_STATUS_PUBLISHED) {
+        $where['status'] = ss_mysql_prepare('status = %s', $item_status);
+    } elseif ($item_status == 'all') {
+        $where['status'] = ss_mysql_prepare('status IN (%s)', array(array(0,1)));
+    }
+
+    if ($ssq = ss_filter_getValue('ssq')) {
+        $where[] = ss_mysql_prepare('content LIKE %s', array("%$ssq%"));
+    }
+    $where = join(' AND ', $where);
+    // pre($where);
+
+    $table = ss_mysql_table('item_comment');
+    $count = ss_mysql_count($table, $where);
+    if ($count) {
+        $pager = new Pager($count);
+        ss_set('pager', $pager);
+        $table_item = ss_mysql_table('item');
+        return ss_mysql_getAll("SELECT c.*, i.title item_title FROM $table c JOIN $table_item i ON i.id = c.item_id WHERE $where ORDER BY c.id DESC LIMIT %d,%d", array($pager->start, $pager->stop));
+    }
+}
+
+function ss_admin_comment_update($id, $comment) {
+    $comment_content      = ss_filter_arrayValue($comment, 'content', true);
+    $comment_status       = ss_filter_arrayValue($comment, 'status', true);
+    $comment_author_name  = ss_filter_arrayValue($comment, 'author_name', true);
+    $comment_author_email = ss_filter_arrayValue($comment, 'author_email', true);
+    if ($comment_status == SS_COMMENT_STATUS_WAITING || $comment_status == SS_COMMENT_STATUS_PUBLISHED) {
+        ss_mysql_update(ss_mysql_table('item_comment'), array(
+            'content'      => $comment_content,
+            'status'       => $comment_status,
+            'author_name'  => $comment_author_name,
+            'author_email' => $comment_author_email,
+        ), 'id = %d', $id, 1);
+    }
+}
+
+function ss_admin_comment_delete($id) {
+    ss_mysql_delete(ss_mysql_table('item_comment'), 'id = %d', $id, 1);
+}
+
+function ss_admin_comment_setStatus($id, $status) {
+    if ($status == SS_COMMENT_STATUS_WAITING || $status == SS_COMMENT_STATUS_PUBLISHED) {
+        ss_mysql_update(ss_mysql_table('item_comment'), array(
+            'status' => $status,
+        ), 'id = %d', $id, 1);
+    }
 }

@@ -26,7 +26,7 @@ $menus = ss_mysql_getAll("SELECT * FROM $table ORDER BY sort ASC");
 
     <?php if (!no($menus)): ?>
 
-    <table class="ss-admin-item-list">
+    <table class="ss-admin-list">
 
         <tr>
             <th>Text</th>

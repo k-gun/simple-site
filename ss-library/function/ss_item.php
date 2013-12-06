@@ -37,6 +37,7 @@ function ss_item_getBySearch($opts = null, $q, $limit = array(0,10)) {
     }
 }
 
+// @not in use
 function ss_item_getLinks($opts = null) {
     $opts = get_options($opts);
 
@@ -54,7 +55,7 @@ function ss_item_getLinks($opts = null) {
     $table = ss_mysql_table('item');
     $links = ss_mysql_getAll("SELECT * FROM $table ORDER BY $order_by $limit");
     if (!empty($links)) {
-        $links = array_map('the_itemLink', $links);
+        $links = array_map('the_item_link', $links);
     }
 
     return $links;
@@ -83,23 +84,23 @@ function ss_item_applyCallback($input, Closure $callback = null) {
 }
 
 // Printer functions
-function the_itemLink($item, Closure $callback = null) {
+function the_item_link($item, Closure $callback = null) {
     $item = to_array($item);
     $item_link = ss_item_formatLink($item);
     return ss_item_applyCallback($item_link, $callback);
 }
 
-function the_itemTitle($item, Closure $callback = null) {
+function the_item_title($item, Closure $callback = null) {
     $item = to_array($item);
     return ss_item_applyCallback($item['title'], $callback);
 }
 
-function the_itemTitleSlug($item, Closure $callback = null) {
+function the_item_titleSlug($item, Closure $callback = null) {
     $item = to_array($item);
     return ss_item_applyCallback($item['title_slug']);
 }
 
-function the_itemContent($item, Closure $callback = null, $opts = null) {
+function the_item_content($item, Closure $callback = null, $opts = null) {
     $opts = get_options($opts);
     $item = to_array($item);
     if (isset($opts['strip'])) {
@@ -117,11 +118,11 @@ function the_item_dateTime($item, $format = null) {
     return date($format, $item['date_time']);
 }
 
-function the_itemContentSub($item, Closure $callback = null, $opts = null, $sub = 100) {
+function the_item_contentSub($item, Closure $callback = null, $opts = null, $sub = 100) {
     $opts = get_options($opts);
     $opts['nobr'] = true;
     $opts['strip'] = true;
-    $content = the_itemContent($item, $callback, $opts);
+    $content = the_item_content($item, $callback, $opts);
     $content = mb_substr($content, 0, $sub);
     if (($pos = mb_strrpos($content, ' ')) !== false) {
         $content = mb_substr($content, 0, $pos);
@@ -129,7 +130,7 @@ function the_itemContentSub($item, Closure $callback = null, $opts = null, $sub 
     return $content;
 }
 
-function the_itemImages($item, Closure $callback = null) {
+function the_item_images($item, Closure $callback = null) {
     $item = to_array($item);
     $item_images = array();
     preg_match_all('~(<img.*?/?>)~i', $item['content'], $matches1);
@@ -143,7 +144,7 @@ function the_itemImages($item, Closure $callback = null) {
     return ss_item_applyCallback($item_images);
 }
 
-function the_itemCommentable($item) {
+function the_item_isCommenAllowed($item) {
     $item = to_array($item);
     return (bool) $item['allow_comment'];
 }

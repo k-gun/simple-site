@@ -40,7 +40,7 @@
 
 .ss-admin-aside {
     float: left;
-    width: 250px;
+    width: 150px;
     border-right: 1px dotted #ccc;
     margin-right: 30px;
     padding-right: 30px;
@@ -66,35 +66,37 @@
 
 .ss-admin-page-content {
     float: left;
-    width: 680px;
+    width: 788px;
 }
 
-.ss-admin-item-list {
+.ss-admin-list {
     width: 100%;
     margin-top: 12px;
-} .ss-admin-item-list-title {
+} .ss-admin-list-title {
     font-size: 14px;
     font-weight: bold;
-} .ss-admin-item-list-content {
-} .ss-admin-item-list-actions {
+} .ss-admin-list-content {
+} .ss-admin-list-datetime {
+    font-size: 11px;
+} .ss-admin-list-actions {
     font-size: 11px;
     text-align: center;
     white-space: nowrap;
 }
 
-.ss-admin-item-form {
+.ss-admin-form {
     display: block;
     margin-top: 12px;
-} .ss-admin-item-form-text {
+} .ss-admin-form-text {
     width: 98.5%;
-} .ss-admin-item-form div {
+} .ss-admin-form div {
     margin-bottom: 12px;
-} .ss-admin-item-form-submit {
+} .ss-admin-form-submit {
     border-top: 1px solid #212121;
     padding-top: 12px;
 }
 
-select.ss-admin-item-status {
+select.ss-admin-list-status {
     padding: 0;
 }
 

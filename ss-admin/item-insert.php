@@ -20,14 +20,14 @@ if (isset($_POST['item'])) {
         <h3>Add new item</h3>
     </div>
 
-    <form method="post" action="<?=get_uri()?>" class="ss-admin-item-form">
-        <div><input type="text" name="item[title]" id="itemTitle" placeholder="Title" class="ss-admin-item-form-text"></div>
+    <form method="post" action="<?=get_uri()?>" class="ss-admin-form">
+        <div><input type="text" name="item[title]" id="itemTitle" placeholder="Title" class="ss-admin-form-text"></div>
         <div class="ss-admin-editor-buttons fixed">
             <?php include('editor_buttons.php'); ?>
         </div>
         <div>
             <iframe src="about:blank" id="editor" name="editor" frameborder="0"></iframe>
-            <textarea name="item[content]" id="itemContent" rows="15" class="ss-admin-item-form-text"></textarea>
+            <textarea name="item[content]" id="itemContent" rows="15" class="ss-admin-form-text"></textarea>
         </div>
         <div><select name="item[status]">
                 <?php print ss_html_selectOption(cfg('item.status'), SS_ITEM_STATUS_DRAFT, true); ?>
@@ -36,7 +36,7 @@ if (isset($_POST['item'])) {
              <label>Allow comments: <input type="checkbox" name="item[allow_comment]" value="1" checked></label>
         </div>
 
-        <div class="ss-admin-item-form-submit">
+        <div class="ss-admin-form-submit">
             <span class="floatr"></span>
             <input type="submit" name="submit" value="Submit">
         </div>

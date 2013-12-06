@@ -6,14 +6,14 @@
 
 <?php
 $id = ss_filter_getValue('id', SS_FILTER_TYPE_INT);
+// Update item
 if (isset($_POST['item'])) {
     ss_admin_item_update($id, $_POST['item']);
     redirect('/ss-admin/item-update?id=%d&success=1&action=updated', $id);
 }
-
+// Get item
 $item = ss_admin_item_get($id);
 if (no($item)) redirect('/ss-admin/item-list');
-// pre($item);
 ?>
 
 <link href="<?=ss_admin_asset('editor.css')?>" rel="stylesheet">
@@ -21,7 +21,7 @@ if (no($item)) redirect('/ss-admin/item-list');
 
 <div class="ss-admin-page-content">
 
-<?php if(isset($_GET['success'])): ?>
+<?php if (isset($_GET['success'])): ?>
 <div class="success">Item has been <?=ss_filter_getValue('action', true)?> successfully.</div>
 <script>
 setTimeout(function(){
@@ -34,18 +34,18 @@ setTimeout(function(){
 <?php endif; ?>
 
     <div class="ss-admin-subhead">
-        <a href="<?=the_itemLink($item)?>" class="floatr" target="_blank">View on site</a>
+        <a href="<?=the_item_link($item)?>" class="floatr" target="_blank">View on site</a>
         <h3>Edit item</h3>
     </div>
 
-    <form method="post" action="<?=get_uri(!1)?>" class="ss-admin-item-form">
-        <div><input type="text" name="item[title]" id="itemTitle" placeholder="Title" class="ss-admin-item-form-text" value="<?=ss_filter($item->title)?>"></div>
+    <form method="post" action="<?=get_uri(!1)?>" class="ss-admin-form">
+        <div><input type="text" name="item[title]" id="itemTitle" placeholder="Title" class="ss-admin-form-text" value="<?=ss_filter($item->title)?>"></div>
         <div class="ss-admin-editor-buttons fixed">
             <?php include('editor_buttons.php'); ?>
         </div>
         <div>
             <iframe src="about:blank" id="editor" name="editor" frameborder="0"></iframe>
-            <textarea name="item[content]" id="itemContent" rows="15" class="ss-admin-item-form-text"><?=$item->content?></textarea>
+            <textarea name="item[content]" id="itemContent" rows="15" class="ss-admin-form-text"><?=$item->content?></textarea>
         </div>
         <div><select name="item[status]">
                 <?php print ss_html_selectOption(cfg('item.status'), $item->status, true); ?>
@@ -54,7 +54,7 @@ setTimeout(function(){
              <label>Allow comments: <input type="checkbox" name="item[allow_comment]" value="1"<?=ss_html_checked($item->allow_comment,1)?>></label>
         </div>
 
-        <div class="ss-admin-item-form-submit">
+        <div class="ss-admin-form-submit">
             <span class="floatr"></span>
             <input type="submit" name="submit" value="Submit">
         </div>

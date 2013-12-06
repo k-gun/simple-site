@@ -89,7 +89,7 @@ mii.onReady(function($){
     });
 
     // Form
-    $.dom(".ss-admin-item-form").on("submit", function(e){
+    $.dom(".ss-admin-form").on("submit", function(e){
         setTextareaValue();
     });
 

@@ -14,4 +14,10 @@ mii.onReady(function($){
     $.dom("a[href='#']").on("click", function(e){
         e.preventDefault();
     });
+
+    $.dom("a[confirm^='#']").on("click", function(e){
+        if (!confirm(this.getAttribute("confirm").substring(1))) {
+            e.preventDefault();
+        }
+    });
 });

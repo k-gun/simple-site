@@ -132,4 +132,34 @@
     list-style-type: disc;
 } .ss-item-content ol {
     list-style-type: decimal;
+} .ss-item-comments {
+    clear: both;
+    margin-top: 30px;
+    padding-top: 10px;
+    border-top: 1px dotted #ccc;
+    font-size: 80%;
+} .ss-item-comments ul {
+    /*margin-left: 30px;*/
+} .ss-item-comments ul li {
+    padding: 6px 0 6px 0;
+} .ss-item-comments .ss-comment-meta {
+} .ss-item-comments .ss-comment-meta b {
+} .ss-item-comments .ss-comment-meta abbr {
+    color: #777;
+    font-size: 80%;
+} .ss-item-comments .ss-comment-content {
+}
+
+.ss-comment-form {
+    display: block;
+    margin-top: 30px;
+} .ss-comment-form p {
+    margin-bottom: 12px;
+} .ss-comment-form-caption {
+    font-size: 110%;
+    font-weight: bold;
+    margin-bottom: 12px;
+    text-decoration: underline;
+} .ss-comment-form input[type="text"] , .ss-comment-form textarea {
+    width: 300px;
 }

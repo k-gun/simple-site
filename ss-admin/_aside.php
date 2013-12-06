@@ -11,6 +11,13 @@
     </div>
 
     <div class="ss-admin-aside-box">
+        <h3><i class="fa fa-comments-o"></i> Comments</h3>
+        <ul>
+            <li><a href="<?=ss_admin_link('comment-list')?>">List comments</a></li>
+        </ul>
+    </div>
+
+    <div class="ss-admin-aside-box">
         <h3><i class="fa fa-list"></i> Menu</h3>
         <ul>
             <li><a href="<?=ss_admin_link('menu-list')?>">List menus</a></li>

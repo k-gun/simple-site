@@ -36,7 +36,7 @@ if (isset($max_sort_get->sort)) {
         <h3>Add new menu item</h3>
     </div>
 
-    <form method="post" action="" class="ss-admin-item-form">
+    <form method="post" action="" class="ss-admin-form">
         <div>Text:<br> <input type="text" name="link_text" size="50"></div>
         <div>Link:<br> <input type="text" name="link_href" size="50"></div>
         <div>Sort:<br> <input type="text" name="sort" size="6" value="<?=$max_sort?>"></div>
@@ -46,7 +46,7 @@ if (isset($max_sort_get->sort)) {
                 <option value="foot">foot</option>
             </select></div>
 
-        <div class="ss-admin-item-form-submit"><input type="submit" name="submit" value="Submit"></div>
+        <div class="ss-admin-form-submit"><input type="submit" name="submit" value="Submit"></div>
     </form>
 
 </div>

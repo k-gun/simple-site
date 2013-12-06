@@ -1,6 +1,6 @@
 mii.onReady(function($){
-    var form = $.dom(".ss-admin-item-form");
-    var draftSaved = $.dom(".ss-admin-item-form-submit .floatr");
+    var form = $.dom(".ss-admin-form");
+    var draftSaved = $.dom(".ss-admin-form-submit .floatr");
 
     var change = false;
     form.find("select, input, textarea").on("keyup, keydown, change", function(){

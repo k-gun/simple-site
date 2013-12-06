@@ -37,7 +37,7 @@ hr {
 
 pre, code {
     font-size: 10px;
-    font-family: "MonacoB", monospace;
+    font-family: "Consolas", "MonacoB", monospace;
     line-height: 1.3em;
 }
 
