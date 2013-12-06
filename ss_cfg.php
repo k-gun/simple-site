@@ -46,7 +46,7 @@ $cfg['routes'] = array(
     )
 );
 
-$cfg['media.image.base'] = '/upload';
+$cfg['media.image.base'] = '/upload/image';
 $cfg['media.image.widths'] = array(150, 300, 450, 750);
 $cfg['media.image.cropSize'] = 100;
 $cfg['media.image.mimeTypes'] = array(

@@ -22,7 +22,7 @@
     visibility: visible;
 }
 
-.ss-admin-editor .fa {
+.ss-admin-editor-buttons .fa {
     cursor: pointer;
     color: #444;
     font-size: 12px;
@@ -37,9 +37,9 @@
     background: #f0f0f0;
     background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc));
     background: -moz-linear-gradient(top, #fff, #ccc);
-} .ss-admin-editor .fa:hover {
+} .ss-admin-editor-buttons .fa:hover {
     border: 1px solid #777;
-} .ss-admin-editor .fa.fa-active {
+} .ss-admin-editor-buttons .fa.fa-active {
     border: 1px solid #777;
     background: #c0c0c0;
 }

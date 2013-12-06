@@ -4,7 +4,7 @@
 
 <div class="ss-admin-foot">
 
-    <div class="ss-admin-container fixed">
+    <div class="ss-admin-container container fixed">
 
         <div class="ss-admin-foot-copy">
             Copyright <?=date('Y')?> - <?=cfg('site.name')?>

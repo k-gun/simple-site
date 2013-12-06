@@ -17,7 +17,7 @@
 
 <div class="ss-admin-head">
 
-    <div class="ss-admin-container fixed">
+    <div class="ss-admin-container container fixed">
 
         <div class="ss-admin-head-logo">
             <a href="<?=ss_admin_link('/')?>"><img src="" alt="Home"></a>
@@ -35,4 +35,4 @@
 </div><!-- .ss-admin-head -->
 
 <div class="ss-admin-body">
-    <div class="ss-admin-container fixed">
+    <div class="ss-admin-container container fixed">

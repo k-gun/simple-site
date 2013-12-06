@@ -1,12 +1,11 @@
-var $ss = window.$ss || {};
+var __ss = window.__ss || {};
 
-$ss.modal = function(options) {
+__ss.modal = function(options) {
     this.defaultOptions = {
         width: 350, height: null,
         buttons: [],
-        layerCanClose: true,
         closeText: "close",
-        animateTop: 350
+        layerCanClose: true
     };
     this.options = mii.mix({}, this.defaultOptions, options || {});
     this.tpl = '<div class="modal"><div class="modal_head"></div><div class="modal_body"></div><div class="modal_foot"></div></div>';
@@ -17,7 +16,7 @@ $ss.modal = function(options) {
     this.head = this.body = this.foot;
 };
 
-mii.extend($ss.modal.prototype, {
+mii.extend(__ss.modal.prototype, {
     generate: function() {
         this.modalLay = mii.dom("<div class='modal_lay' id='modalLay_"+ this.uuid +"' data-zindex="+ this.uuid +"></div>");
         if (this.options.layerCanClose !== false) {
@@ -146,6 +145,6 @@ mii.extend($ss.modal.prototype, {
 // Listen ESC key
 mii.dom(window).on("keydown", function(e){
     if (e.keyCode == 27) {
-        (new $ss.modal).destroy();
+        (new __ss.modal).destroy();
     }
 });

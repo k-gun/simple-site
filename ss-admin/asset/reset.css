@@ -36,7 +36,7 @@ hr {
 }
 
 pre, code {
-    font-size: 12px;
+    font-size: 10px;
     font-family: "MonacoB", monospace;
     line-height: 1.3em;
 }
@@ -49,7 +49,7 @@ textarea {
     resize: vertical;
 }
 
-input, textarea, select {
+input, textarea, select, button {
     padding: 4px;
     font-size: 100%;
     background-color: #fff;
@@ -66,7 +66,7 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus, select:f
     outline: 1px solid #212121;
 }
 
-input[type="submit"], input[type="reset"], input[type="button"] {
+input[type="submit"], input[type="reset"], input[type="button"], button {
     cursor: pointer;
     padding: 4px 7px;
     font-weight: bold;

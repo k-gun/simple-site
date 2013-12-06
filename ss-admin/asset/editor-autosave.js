@@ -1,26 +1,24 @@
 mii.onReady(function($){
     var form = $.dom(".ss-admin-item-form");
     var draftSaved = $.dom(".ss-admin-item-form-submit .floatr");
+
     var change = false;
-
-    form.find("select, input, textarea").forEach(function(el){
-        el.onkeyup =
-        el.onchange =
-        el.onkeydown =
-            function(){ change = true; };
-    });
-
-    var editor = $ss.editor.$("editor");
-    $.dom(editor.contentWindow).on("focus, blur, keydown, keyup", function(){
+    form.find("select, input, textarea").on("keyup, keydown, change", function(){
         change = true;
     });
 
-    var time = 1000;
+    var editor = document.getElementById("editor");
+    $.dom(editor.contentWindow).on("focus, blur, keyup, keydown", function(e){
+        change = true;
+    });
+
+    var time = 1000, data;
     setInterval(function(){
-        if (!change) {
+        data = form.builtQueryArray();
+        if (!change || $.trim(data["item[title]"]) === "") {
             return;
         }
-        $.ajax.post("/ss-admin/ajax?do=item-save-draft", form.builtQueryArray(), function(r){
+        $.ajax.post("/ss-admin/ajax?do=item-save-draft", data, function(r){
             draftSaved.setStyle("opacity", 1).setText("Saved!");
             var t = setTimeout(function(){
                 draftSaved.fadeOut(1000);

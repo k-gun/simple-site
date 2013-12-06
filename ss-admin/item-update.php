@@ -13,6 +13,7 @@ if (isset($_POST['item'])) {
 
 $item = ss_admin_item_get($id);
 if (no($item)) redirect('/ss-admin/item-list');
+// pre($item);
 ?>
 
 <link href="<?=ss_admin_asset('editor.css')?>" rel="stylesheet">
@@ -39,7 +40,7 @@ setTimeout(function(){
 
     <form method="post" action="<?=get_uri(!1)?>" class="ss-admin-item-form">
         <div><input type="text" name="item[title]" id="itemTitle" placeholder="Title" class="ss-admin-item-form-text" value="<?=ss_filter($item->title)?>"></div>
-        <div class="ss-admin-editor fixed">
+        <div class="ss-admin-editor-buttons fixed">
             <?php include('editor_buttons.php'); ?>
         </div>
         <div>
@@ -65,7 +66,7 @@ setTimeout(function(){
 
 <script>
 mii.onReady(function($){
-    $ss.editor.frame().document.body.innerHTML = $ss.editor.$("itemContent").value;
+    __ss.editor.setDocumentBodyContent($.dom("#itemContent").getValue());
 });
 </script>
 

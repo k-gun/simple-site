@@ -131,3 +131,7 @@ function ss_admin_item_setStatus($id, $status) {
         ), 'id = %d', $id, 1);
     }
 }
+
+function ss_admin_hiliteImageSizes($src) {
+    return preg_replace('~(\d+)x(\d+)~i', '<span>\\1x\\2</span>', $src);
+}

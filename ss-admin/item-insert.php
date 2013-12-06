@@ -22,7 +22,7 @@ if (isset($_POST['item'])) {
 
     <form method="post" action="<?=get_uri()?>" class="ss-admin-item-form">
         <div><input type="text" name="item[title]" id="itemTitle" placeholder="Title" class="ss-admin-item-form-text"></div>
-        <div class="ss-admin-editor fixed">
+        <div class="ss-admin-editor-buttons fixed">
             <?php include('editor_buttons.php'); ?>
         </div>
         <div>

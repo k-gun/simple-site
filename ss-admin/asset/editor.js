@@ -1,56 +1,92 @@
-// command list: http://help.dottoro.com/larpvnhw.php
-// insertImage varmis
+var __ss = window.__ss || {};
 
-var $ss = window.$ss || {};
-
-$ss.editor = {
-    $: function(id) {
-        return document.getElementById(id);
+__ss.editor = {
+    getWindow : function() {
+        var edi = document.getElementById("editor");
+        return edi.contentWindow;
     },
-    frame: function() {
-        if (window.frames)   { return window.frames["editor"]; }
-        if (document.frames) { return document.frames["editor"]; }
-        alert("Please use proper browser!");
+    getDocument: function(){
+        var edi = document.getElementById("editor");
+        return edi.contentDocument || edi.contentWindow.document;
     },
-    exec: function(a, b) {
-        var editor = this.$("editor");
-        if (a.toLowerCase() == "createlink") {
-            b = prompt("Please enter target link below.\t\t\t\t\t\t\t\t\t\nFor emails: \"mailto:mail@mail.com\"",
-                       "http://");
-            if (b === "http://") return;
+    getDocumentBody: function(){
+        var doc = this.getDocument();
+        return doc.body || doc.getElementsByTagName("body")[0];
+    },
+    setDocumentBodyContent: function(html){
+        var body = this.getDocumentBody();
+        body.innerHTML = html;
+    },
+    getDocumentBodyContent: function(){
+        var body = this.getDocumentBody();
+        var html = mii.trim(body.innerHTML);
+        html = html.replace(/<p><br([\s\/]*)><\/p>/i, "");
+        html = html.replace(/<strike([^>]*)>(.*?)<\/strike>/i, "<s$1>$2</s>");
+        return html;
+    },
+    insertHtml: function(html) {
+        // http://stackoverflow.com/a/17439316/362780
+        var doc = this.getDocument();
+        if(doc.all) {
+            var range = doc.selection.createRange();
+            range.pasteHTML(html);
+            range.collapse(false);
+            range.select();
+        } else {
+            this.exec("inserthtml", html);
         }
-        editor.contentWindow.document.execCommand(a, false, b);
-        editor.contentWindow.focus();
+    },
+    insertImage: function(src){
+        var img = "<img src='" + src + "' class='ss-item-image'>";
+        this.insertHtml(img);
+    },
+    exec: function(cmd, content) {
+        var win = this.getWindow();
+        var doc = this.getDocument();
+        if (cmd.toLowerCase() == "createlink") {
+            content = prompt("Please enter target link below.\t\t\t\t\t\t\t\t\t\nFor emails: \"mailto:mail@mail.com\"",
+                       "http://");
+            if (content === "http://") return;
+        }
+        win.focus(); // sometimes does not work unless this
+        doc.execCommand(cmd, false, content);
+        win.focus();
     }
 };
 
 mii.onReady(function($){
-    var iframe = $ss.editor.frame();
-    iframe.document.designMode = "on";
-    iframe.document.open();
-    iframe.document.write("<html>");
-    iframe.document.write("<head><link rel='stylesheet' href='/ss-admin/asset/editor-frame.css?"+ $.now() +"'></head>");
-    iframe.document.write("<body spellcheck='false'></body>");
-    iframe.document.write("</html>");
-    iframe.document.close();
-
-    var editor = $ss.editor.$("editor");
-    editor.contentWindow.onfocus = function(){
-        setTextareaValue();
-        editor.className = "editor-focus";
+    var setTextareaValue = function(){
+        itemContent.value = __ss.editor.getDocumentBodyContent();
     };
-    editor.contentWindow.onblur = function(){
-        setTextareaValue();
-        editor.className = "";
-    };
-    editor.contentWindow.onkeyup = editor.contentWindow.onkeydown = function() {
-        setTextareaValue();
+    var getTextareaValue = function(){
+        var value = $.trim(itemContent.value);
+        value = value.replace(/(\r\n)/, "<br><br>");
+        return value;
     };
 
-    var itemContent = $ss.editor.$("itemContent");
-    itemContent.onchange = function() {
-        setEditorHtml();
-    };
+    var iframeDocument = __ss.editor.getDocument();
+    iframeDocument.designMode = "on";
+
+    var iframeHead, iframeBody;
+    iframeHead = $.dom("head", iframeDocument).first();
+    iframeHead.append("<link href='/ss-admin/asset/editor-frame.css?"+ $.now() +"' rel='stylesheet'>");
+    iframeHead.append("<script src='/ss-admin/asset/editor-frame.js?"+ $.now() +"'><\/script>");
+    iframeBody = $.dom("body", iframeDocument).first();
+    iframeBody.setAttr({id: "body", spellcheck: "false"});
+
+    var editor = document.getElementById("editor");
+    $.dom(editor.contentWindow).on("blur", function(){
+        setTextareaValue(); editor.className = "";
+    }).on("focus", function(){
+        setTextareaValue(); editor.className = "editor-focus";
+    }).on("keyup, keydown", function(){
+        setTextareaValue();
+    });
+
+    var itemContent = document.getElementById("itemContent");
+    $.dom(itemContent).on("keyup, keydown, change", function(){
+        __ss.editor.setDocumentBodyContent(getTextareaValue());
+    });
 
     // Form
     $.dom(".ss-admin-item-form").on("submit", function(e){
@@ -58,17 +94,17 @@ mii.onReady(function($){
     });
 
     // Buttons
-    var ssae = $.dom(".ss-admin-editor");
-    ssae.find(".fa[role='button']").on("click", function(e){
+    var buttons = $.dom(".ss-admin-editor-buttons");
+    buttons.find(".fa[role='button']").on("click", function(e){
         $.dom(this).toggleClass("fa-active");
     });
-    ssae.find(".fa.e-list").on("click", function(e){
+    buttons.find(".fa.e-list, .e-justify").on("click", function(e){
         $.dom(this).siblings().removeClass("fa-active");
     });
-    ssae.find(".fa-eraser").on("click", function(e){
-        ssae.find(".fa.e-format").removeClass("fa-active");
+    buttons.find(".fa-eraser").on("click", function(e){
+        buttons.find(".fa.e-format").removeClass("fa-active");
     });
-    ssae.find(".e-toggle-editor").on("click", function(e){
+    buttons.find(".e-toggle-editor").on("click", function(e){
         var el = $.dom(this);
         if (el.hasClass("fa-active")) {
             $.dom("#editor, .ss-admin-buttons").hide(0);
@@ -80,19 +116,22 @@ mii.onReady(function($){
     });
 
     // Image modal
-    ssae.find(".fa-picture-o").on("click", function(){
-        var modal = new $ss.modal({width: 750, height: 450});
+    buttons.find(".fa-picture-o").on("click", function(){
+        var modal = new __ss.modal({width: 750, height: 450});
         modal.open("Insert Image", "", function(){
-            var $iframe = $.dom("<iframe>");
-            $iframe.setAttr({width: "100%", height: "98%", frameBorder: 0, src: "/ss-admin/media_iframe.php"});
-            // $iframe.setStyle("border", "1px solid #000");
-            $iframe.appendTo(modal.body);
+            var iframe = $.dom("iframe", {
+                width: "100%",
+                height: "98%",
+                frameBorder: 0,
+                src: "/ss-admin/media_image_iframe.php"
+            });
+            iframe.appendTo(modal.body);
         });
     });
 
     // Set original height
     $.dom("#editor").setAttr("data-original-height", $.dom("#editor").height());
-    ssae.find(".fa-plus-square, .fa-minus-square").on("click", function(){
+    buttons.find(".fa-plus-square, .fa-minus-square").on("click", function(){
         var el = $.dom(this);
         var ed = $.dom("#editor");
         if (ed.height() < parseInt(ed.getAttr("data-original-height"))) {
@@ -110,24 +149,4 @@ mii.onReady(function($){
             ed.setStyle("height", ed.height() - 30);
         }
     });
-
-    var setEditorHtml = function() {
-        iframe.document.body.innerHTML = getTextareaValue();
-    };
-    var getEditorHtml = function(){
-        var html = iframe.document.body.innerHTML;
-        html = $.trim(""+ html);
-        html = html.replace(/<p><br([\s\/]*)><\/p>/i, "");
-        html = html.replace(/<strike([^>]*)>(.*?)<\/strike>/i, "<s$1>$2</s>");
-        return html;
-    };
-
-    var setTextareaValue = function(){
-        itemContent.value = getEditorHtml();
-    };
-    var getTextareaValue = function(){
-        var value = itemContent.value;
-        value = value.replace(/(\r\n)/, "<br><br>");
-        return value;
-    };
 });
