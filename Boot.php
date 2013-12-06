@@ -39,6 +39,7 @@ date_default_timezone_set($cfg['site.defaultTimezone']);
 
 // Load functions
 load_function('ss');
+load_function('ss_mysql');
 load_function('ss_intl');
 load_function('ss_html');
 load_function('ss_route');
@@ -47,7 +48,6 @@ load_function('ss_item');
 load_function('ss_menu');
 load_function('ss_theme');
 load_function('ss_filter');
-load_function('ss_mysql');
 
 // Register autoload.
 spl_autoload_register('load_class');

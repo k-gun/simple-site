@@ -35,12 +35,12 @@ if ($do == 'item-save-draft') {
     )); */
 
     ss_mysql_query("INSERT INTO $table (title, title_slug, content, status, date_time, allow_comment, draft_token) VALUES(:title, :title_slug, :content, :status, :date_time, :allow_comment, :draft_token) ON DUPLICATE KEY UPDATE title = VALUES(title), title_slug = VALUES(title_slug), content = VALUES(content), status = VALUES(status), date_time = VALUES(date_time), allow_comment = VALUES(allow_comment)", array(
-        ':title'           => $item_title,
-        ':title_slug'      => $item_title_slug,
-        ':content'         => $item_content,
-        ':status'          => $item_status,
-        ':date_time'       => ss_mysql_sql('Unix_Timestamp()'),
-        ':allow_comment'   => $item_allow_comment,
-        ':draft_token'     => $item_draft_token,
+        'title'           => $item_title,
+        'title_slug'      => $item_title_slug,
+        'content'         => $item_content,
+        'status'          => $item_status,
+        'date_time'       => ss_mysql_sql('Unix_Timestamp()'),
+        'allow_comment'   => $item_allow_comment,
+        'draft_token'     => $item_draft_token,
     ));
 }
