@@ -153,4 +153,3 @@ function _remove_images() {
         @unlink($image);
     }
 }
-// _remove_images();
