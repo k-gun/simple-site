@@ -12,7 +12,7 @@ function ss_media_image_upload($image) {
     list($y, $m, $d) = explode('-', date('Y-m-d'));
     $image_base  = trim(cfg('media.image.base'), '/');
     $image_path  = "/$image_base/$y/$m/$d";
-    $upload_path =  SS_ROOT . "/$image_path/";
+    $upload_path = SS_ROOT . "/$image_path/";
     if (!is_dir($upload_path)) {
         mkdir($upload_path, 0755, true);
         chmod($upload_path, 0755);
