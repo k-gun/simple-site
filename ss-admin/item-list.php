@@ -24,7 +24,7 @@ $pager = ss_get('pager');
 
 <div class="ss-admin-page-content">
 
-    <div class="ss-admin-subhead">
+    <div class="ss-admin-page-title">
 
         <h3>Items <?php
             $_get_status = ss_filter_getValue('status');
@@ -78,7 +78,7 @@ $pager = ss_get('pager');
 
     <?php else: ?>
 
-    <br>No contents found.
+    <br>No items found.
 
     <?php endif; ?>
 

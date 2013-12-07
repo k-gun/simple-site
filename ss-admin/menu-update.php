@@ -27,7 +27,7 @@ $menu = ss_mysql_get("SELECT * FROM $table WHERE id = %d", $id);
 
 <div class="ss-admin-page-content">
 
-    <div class="ss-admin-subhead">
+    <div class="ss-admin-page-title">
         <h3>Edit menu</h3>
     </div>
 
@@ -44,7 +44,11 @@ $menu = ss_mysql_get("SELECT * FROM $table WHERE id = %d", $id);
                 <option value="foot"<?=ss_html_selected($menu->position, 'foot')?>>foot</option>
             </select></div>
 
-        <div class="ss-admin-form-submit"><input type="submit" name="submit" value="Submit"></div>
+        <div class="ss-admin-form-submit">
+            <input type="submit" name="submit" value="Submit">
+            &nbsp;|&nbsp;
+            <small>Before adding/editing a menu, see first link structure <a href="<?=ss_admin_link('links')?>">here</a>.</small>
+        </div>
     </form>
 
     <?php else: ?>

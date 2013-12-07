@@ -16,7 +16,7 @@ if (isset($_POST['item'])) {
 
 <div class="ss-admin-page-content">
 
-    <div class="ss-admin-subhead">
+    <div class="ss-admin-page-title">
         <h3>Add new item</h3>
     </div>
 

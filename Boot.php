@@ -56,4 +56,5 @@ spl_autoload_register('load_class');
 // Sent content type
 header('Content-Type: text/html; charset='. $cfg['site.defaultEncoding']);
 
-// pre($cfg,1);
+// $a = ss_filter('a091zF', SS_FILTER_TYPE_HEX);
+// pre($a,1);

@@ -32,7 +32,7 @@ if (isset($max_sort_get->sort)) {
 
 <div class="ss-admin-page-content">
 
-    <div class="ss-admin-subhead">
+    <div class="ss-admin-page-title">
         <h3>Add new menu item</h3>
     </div>
 
@@ -46,7 +46,11 @@ if (isset($max_sort_get->sort)) {
                 <option value="foot">foot</option>
             </select></div>
 
-        <div class="ss-admin-form-submit"><input type="submit" name="submit" value="Submit"></div>
+        <div class="ss-admin-form-submit">
+            <input type="submit" name="submit" value="Submit">
+            &nbsp;|&nbsp;
+            <small>Before adding/editing a menu, see first link structure <a href="<?=ss_admin_link('links')?>">here</a>.</small>
+        </div>
     </form>
 
 </div>

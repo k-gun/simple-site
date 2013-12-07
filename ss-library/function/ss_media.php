@@ -90,15 +90,15 @@ function ss_media_image_getFullPath(array $dims, array $data, $extra = null) {
 }
 
 function ss_media_image_getAll($opts = null) {
-    $opts = get_options($opts);
-    $where = array('1=1');
+    $opts   = get_options($opts);
+    $where  = array('1=1');
     if (isset($opts['id'])) {
         $where[] = ss_mysql_prepare('id = %d', $opts['id']);
     }
     $where  = join(' AND ', $where);
     $table  = ss_mysql_table('media');
     $count  = ss_mysql_count($table);
-    $pager  = new Pager($count, 5);
+    $pager  = new Pager($count, 10);
     // Store pager to use later
     ss_set('media.pager', $pager);
 
@@ -136,13 +136,29 @@ function ss_media_image_getAll($opts = null) {
 }
 
 function ss_media_image_insert($data) {
-    if (!empty($data)) {
+    if (!no($data)) {
         $data = str_replace('\\/', '/', json_encode($data));
         ss_mysql_insert(ss_mysql_table('media'), array(
             'type' => SS_MEDIA_TYPE_IMAGE,
             'data' => $data,
         ));
         return ss_mysql_insertId();
+    }
+}
+
+function ss_media_image_delete($id) {
+    $id = intval($id);
+    $image = ss_media_image_getAll("id=$id");
+    $image =@ to_array($image[0]);
+    if (!no($image)) {
+        ss_mysql_delete(ss_mysql_table('media'), 'id = %d', $id, 1);
+        if (ss_mysql_rowsAffected()) {
+            $path = sprintf("%s/%s/%s_*", SS_ROOT, trim($image['data']['path'], '/'), $image['data']['hash']);
+            $glob = glob($path);
+            foreach ($glob as $g) {
+                @unlink($g);
+            }
+        }
     }
 }
 

@@ -1,10 +1,15 @@
 <?php
 // Defines
-define('SS_FILTER_TYPE_INT',    'int');
-define('SS_FILTER_TYPE_BOOL',   'bool');
-define('SS_FILTER_TYPE_FLOAT',  'float');
-define('SS_FILTER_TYPE_DOUBLE', 'double');
-define('SS_FILTER_TYPE_STRING', 'string');
+define('SS_FILTER_TYPE_INT',          'int');
+define('SS_FILTER_TYPE_INTEGER',      'integer');
+define('SS_FILTER_TYPE_BOOL',         'bool');
+define('SS_FILTER_TYPE_FLOAT',        'float');
+define('SS_FILTER_TYPE_DOUBLE',       'double');
+define('SS_FILTER_TYPE_STRING',       'string');
+define('SS_FILTER_TYPE_NUM',          'num');
+define('SS_FILTER_TYPE_NUMERIC',      'numeric');
+define('SS_FILTER_TYPE_HEX',          'hex');
+define('SS_FILTER_TYPE_HEXADECIMAL',  'hexadecimal');
 
 function ss_filter($input, $encode = false, $type = SS_FILTER_TYPE_STRING) {
     // Trim first
@@ -16,7 +21,7 @@ function ss_filter($input, $encode = false, $type = SS_FILTER_TYPE_STRING) {
         $nullable = $type;
     }
     // Swap args (encode as type, SS_FILTER_*)
-    if (!is_bool($encode) && defined($encode)) {
+    if (!is_bool($encode)) {
         $type = $encode;
     }
 
@@ -28,6 +33,7 @@ function ss_filter($input, $encode = false, $type = SS_FILTER_TYPE_STRING) {
     // Return by type
     switch ($type) {
         case SS_FILTER_TYPE_INT:
+        case SS_FILTER_TYPE_INTEGER:
             $input = (int) $input;
             break;
         case SS_FILTER_TYPE_FLOAT:
@@ -36,6 +42,14 @@ function ss_filter($input, $encode = false, $type = SS_FILTER_TYPE_STRING) {
             break;
         case SS_FILTER_TYPE_BOOL:
             $input = (bool) $input;
+            break;
+        case SS_FILTER_TYPE_NUM:
+        case SS_FILTER_TYPE_NUMERIC:
+            $input = preg_replace('~[^0-9]~', '', $input);
+            break;
+        case SS_FILTER_TYPE_HEX:
+        case SS_FILTER_TYPE_HEXADECIMAL:
+            $input = preg_replace('~[^0-9A-F]~i', '', $input);
             break;
         case SS_FILTER_TYPE_STRING:
         default:

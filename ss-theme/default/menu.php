@@ -1,6 +1,5 @@
 <?php
 $menus = ss_menu_getLinks();
-// pre($menus,1);
 ?>
 
 <ul>

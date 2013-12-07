@@ -56,10 +56,11 @@
     line-height: 130%;
 }
 
-.ss-admin-subhead {
+.ss-admin-page-title {
     border-bottom: 1px solid #212121;
+    margin-bottom: 12px;
     padding-bottom: 12px;
-} .ss-admin-subhead h3 {
+} .ss-admin-page-title h3 {
     display: inline;
     font-size: 130%;
 }
@@ -71,7 +72,6 @@
 
 .ss-admin-list {
     width: 100%;
-    margin-top: 12px;
 } .ss-admin-list-title {
     font-size: 14px;
     font-weight: bold;

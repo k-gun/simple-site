@@ -12,15 +12,12 @@ if ($delete = ss_filter_getValue('delete', SS_FILTER_TYPE_INT)) {
     redirect('/ss-admin/menu-list');
 }
 
-// $count = ss_mysql_count($table);
-// $pager = new Pager($count);
-// $menus = ss_mysql_getAll("SELECT * FROM $table ORDER BY sort ASC LIMIT %d,%d", array($pager->start, $pager->stop));
 $menus = ss_mysql_getAll("SELECT * FROM $table ORDER BY sort ASC");
 ?>
 
 <div class="ss-admin-page-content">
 
-    <div class="ss-admin-subhead">
+    <div class="ss-admin-page-title">
         <h3>Menus</h3>
     </div>
 

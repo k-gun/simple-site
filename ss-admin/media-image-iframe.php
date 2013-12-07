@@ -23,26 +23,41 @@
 </form>
 
 <?php
+$id = null;
+$id_opt = null;
+$insert_only = isset($_GET['insert-only']);
+
+// Upload image
 if (!empty($_FILES) && !empty($_FILES['file'])) {
     $data = ss_media_image_upload($_FILES['file']);
     if (!empty($data)) {
-        ss_media_image_insert($data);
+        $id = ss_media_image_insert($data);
     }
 }
 
-$images = ss_media_image_getAll();
-// pre($images);
+if ($insert_only) {
+    $id_opt = "id=$id";
+}
+
+// Get images
+$images = ss_media_image_getAll($id_opt);
 ?>
 
 <div class="images">
+    <?php if (!$insert_only): ?>
     <h6 class="">Images</h6>
+    <?php endif; ?>
 
 <?php if (!no($images)): ?>
     <ul>
         <?php foreach ($images as $image): ?>
         <li class="fixed">
             <div class="floatr">
+                <?php if (!$insert_only): ?>
                 <button class="image-insert-button" data-id="<?=$image->id?>">insert</button>
+                <?php else: ?>
+                <a href="<?=ss_admin_link('media-list?delete=%d', $image->id)?>" target="_top" class="red" confirm="#Delete?">Delete</a>
+                <?php endif; ?>
             </div>
             <img src="<?=$image->crop['src']?>" width="92" height="92" class="image-crop">
             <div class="image-meta">
@@ -62,7 +77,7 @@ $images = ss_media_image_getAll();
     </div>
 
 <?php else: ?>
-    No images.
+    <?php if (!$insert_only) print('No images.'); ?>
 <?php endif; ?>
 
 </div>

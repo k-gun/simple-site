@@ -24,7 +24,7 @@ $pager = ss_get('pager');
 
 <div class="ss-admin-page-content">
 
-    <div class="ss-admin-subhead">
+    <div class="ss-admin-page-title">
 
         <h3>Comments <?php
             $_get_status = ss_filter_getValue('status');

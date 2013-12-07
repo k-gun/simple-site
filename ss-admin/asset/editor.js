@@ -123,7 +123,7 @@ mii.onReady(function($){
                 width: "100%",
                 height: "98%",
                 frameBorder: 0,
-                src: "/ss-admin/media_image_iframe.php"
+                src: "/ss-admin/media-image-iframe"
             });
             iframe.appendTo(modal.body);
         });
@@ -134,18 +134,18 @@ mii.onReady(function($){
     buttons.find(".fa-plus-square, .fa-minus-square").on("click", function(){
         var el = $.dom(this);
         var ed = $.dom("#editor");
-        // if (ed.height() < parseInt(ed.getAttr("data-original-height"))) {
-        //     ed.setStyle("height", ed.getAttr("data-original-height"));
-        //     return;
-        // }
+        if (ed.height() < parseInt(ed.getAttr("data-original-height"))) {
+            ed.setStyle("height", ed.getAttr("data-original-height"));
+            return;
+        }
 
         if (el.hasClass("fa-plus-square")) {
             ed.setStyle("height", ed.height() + 30);
         } else if (el.hasClass("fa-minus-square")) {
-            // if (ed.height() - 30 <= parseInt(ed.getAttr("data-original-height"))) {
-            //     ed.setStyle("height", ed.getAttr("data-original-height"));
-            //     return;
-            // }
+            if (ed.height() - 30 <= parseInt(ed.getAttr("data-original-height"))) {
+                ed.setStyle("height", ed.getAttr("data-original-height"));
+                return;
+            }
             ed.setStyle("height", ed.height() - 30);
         }
     });

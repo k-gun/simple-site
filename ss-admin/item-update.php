@@ -33,7 +33,7 @@ setTimeout(function(){
 </script>
 <?php endif; ?>
 
-    <div class="ss-admin-subhead">
+    <div class="ss-admin-page-title">
         <a href="<?=the_item_link($item)?>" class="floatr" target="_blank">View on site</a>
         <h3>Edit item</h3>
     </div>

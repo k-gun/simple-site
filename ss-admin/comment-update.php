@@ -30,7 +30,7 @@ setTimeout(function(){
 </script>
 <?php endif; ?>
 
-    <div class="ss-admin-subhead">
+    <div class="ss-admin-page-title">
         <h3>Edit comment</h3>
     </div>
 
