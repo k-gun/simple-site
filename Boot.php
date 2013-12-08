@@ -1,9 +1,4 @@
 <?php
-// domains
-//  simplikka.com
-//  simple-works.org
-//  thesimpleworks.com
-
 // Gzip!!!
 if (!ob_start('ob_gzhandler')) {
     ob_start();
@@ -40,6 +35,7 @@ date_default_timezone_set($cfg['site.defaultTimezone']);
 // Load functions
 load_function('ss');
 load_function('ss_mysql');
+load_function('ss_user');
 load_function('ss_intl');
 load_function('ss_html');
 load_function('ss_route');
@@ -49,12 +45,10 @@ load_function('ss_comment');
 load_function('ss_menu');
 load_function('ss_theme');
 load_function('ss_filter');
+load_function('ss_browser');
 
 // Register autoload.
 spl_autoload_register('load_class');
 
 // Sent content type
 header('Content-Type: text/html; charset='. $cfg['site.defaultEncoding']);
-
-// $a = ss_filter('a091zF', SS_FILTER_TYPE_HEX);
-// pre($a,1);

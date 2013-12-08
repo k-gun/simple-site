@@ -20,13 +20,16 @@
     <div class="ss-admin-container container fixed">
 
         <div class="ss-admin-head-logo">
-            <a href="<?=ss_admin_link('/')?>"><img src="" alt="Home"></a>
+            <a href="<?=ss_admin_link('/')?>">Home</a>
         </div>
 
         <div class="ss-admin-head-menu">
             <ul>
+                <?php if (!is_user()): ?>
                 <li><a href="<?=ss_admin_link('login')?>">Log in</a></li>
+                <?php else: ?>
                 <li><a href="<?=ss_admin_link('logout')?>">Log out</a></li>
+                <?php endif; ?>
             </ul>
         </div>
 

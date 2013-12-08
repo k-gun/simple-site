@@ -107,3 +107,16 @@ select.ss-admin-list-status {
 } .pager a, .pager .current {
     padding: 0 3px;
 }
+
+.ss-admin-login {
+    width: 300px;
+    min-height: 200px;
+    margin: 50px auto;
+} .ss-admin-login h3 {
+    font-size: 130%;
+    margin-bottom: 12px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid #212121;
+} .ss-admin-login p {
+    margin-bottom: 12px;
+}

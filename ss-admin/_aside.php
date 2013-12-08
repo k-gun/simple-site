@@ -5,13 +5,12 @@
         <h3><i class="fa fa-edit"></i> Item</h3>
         <ul>
             <li><a href="<?=ss_admin_link('item-list')?>">List items</a></li>
-            <!-- <li><a href="<?=ss_admin_link('item-list?status=%s', SS_ITEM_STATUS_DELETED)?>">List items (<?=SS_ITEM_STATUS_DELETED?>)</a></li> -->
             <li><a href="<?=ss_admin_link('item-insert')?>">Add new item</a></li>
         </ul>
     </div>
 
     <div class="ss-admin-aside-box">
-        <h3><i class="fa fa-comments-o"></i> Comments</h3>
+        <h3><i class="fa fa-comments-o"></i> Comment</h3>
         <ul>
             <li><a href="<?=ss_admin_link('comment-list')?>">List comments</a></li>
         </ul>

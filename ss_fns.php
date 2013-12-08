@@ -143,8 +143,12 @@ function qry_parse($qry) {
 }
 
 // Checker functions
-function is_user() {}
-function is_admin() {}
+function is_user() {
+    return isset($_SESSION['user']);
+}
+function is_admin() {
+    return isset($_SESSION['user']) && ($_SESSION['user']['rank'] == SS_USER_RANK_ADMIN);
+}
 function is_email($email) {
     return filter_var($email, FILTER_VALIDATE_EMAIL);
 }
@@ -152,13 +156,8 @@ function is_iterable($value) {
     return (is_array($value) || $value instanceof Traversable || $value instanceof stdClass);
 }
 function is_mobile_browser() {
-    load_function('browser');
-    return ss_browserCheckMobile();
+    return ss_browser_checkMobile();
 }
-
-
-
-
 
 
 

@@ -32,7 +32,10 @@
 </div>
 
 <style>
-.ss-admin-item-links * {
+.ss-admin-item-links {
+    list-style-type: inherit;
+    list-style-position: inside;
+} .ss-admin-item-links * {
     font: 12px monospace;
     line-height: 2em;
 }

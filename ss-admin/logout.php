@@ -1,2 +1,6 @@
+<?php include(__DIR__.'/Boot.php'); ?>
+
 <?php
-print __file__;
+ss_user_logout();
+redirect('/ss-admin/login');
+?>

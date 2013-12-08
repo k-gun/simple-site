@@ -1,5 +1,5 @@
 <?php
-class PPass
+class SSPass
 {
     protected $_saltChars = './0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     protected $_saltFormat = '$2a$08$%s$'; // Use blowfish
