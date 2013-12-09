@@ -8,7 +8,9 @@ define('SS_ITEM_STATUS_DRAFT',      'draft');
 function ss_item_get($opts = null) {
     $opts = get_options($opts);
 
-    $where = '';
+    $where = array();
+    $where[] = ss_mysql_prepare('status = %s', SS_ITEM_STATUS_PUBLISHED);
+
     $route = ss_route();
     if (isset($route['id'])) {
         $where = ss_mysql_prepare('AND id = %d', $route['id']);
@@ -16,15 +18,30 @@ function ss_item_get($opts = null) {
         $where = ss_mysql_prepare('AND title_slug = %s', strtolower($route['slug']));
     }
 
+    $where = join(' AND ', $where);
     $table = ss_mysql_table('item');
-    return ss_mysql_get("SELECT * FROM $table WHERE status = %s $where", array(SS_ITEM_STATUS_PUBLISHED));
+    return ss_mysql_get("SELECT * FROM $table WHERE $where");
 }
 
 function ss_item_getAll($opts = null, $limit = array(0,10)) {
     $opts = get_options($opts);
 
+    $where = array();
+    $where[] = ss_mysql_prepare('status = %s', SS_ITEM_STATUS_PUBLISHED);
+
+    if (isset($opts['include'])) {
+        $include = explode(',', $opts['include']);
+        $where[] = ss_mysql_prepare('id IN (%s)', array($include));
+    }
+
+    if (isset($opts['exclude'])) {
+        $exclude = explode(',', $opts['exclude']);
+        $where[] = ss_mysql_prepare('id NOT IN (%s)', array($exclude));
+    }
+
+    $where = join(' AND ', $where);
     $table = ss_mysql_table('item');
-    return ss_mysql_get("SELECT * FROM $table WHERE status = %s", array(SS_ITEM_STATUS_PUBLISHED));
+    return ss_mysql_getAll("SELECT * FROM $table WHERE $where");
 }
 
 function ss_item_getBySearch($opts = null, $q, $limit = array(0,10)) {
