@@ -52,3 +52,5 @@ spl_autoload_register('load_class');
 
 // Sent content type
 header('Content-Type: text/html; charset='. $cfg['site.defaultEncoding']);
+// Remove expose php if exists
+header_remove("X-Powered-By");
