@@ -13,9 +13,9 @@ function ss_item_get($opts = null) {
 
     $route = ss_route();
     if (isset($route['id'])) {
-        $where = ss_mysql_prepare('AND id = %d', $route['id']);
+        $where[] = ss_mysql_prepare('id = %d', $route['id']);
     } elseif (isset($route['slug'])) {
-        $where = ss_mysql_prepare('AND title_slug = %s', strtolower($route['slug']));
+        $where[] = ss_mysql_prepare('title_slug = %s', strtolower($route['slug']));
     }
 
     $where = join(' AND ', $where);

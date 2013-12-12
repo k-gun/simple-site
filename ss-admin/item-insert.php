@@ -23,7 +23,7 @@ if (isset($_POST['item'])) {
     <form method="post" action="<?=get_uri()?>" class="ss-admin-form">
         <div><input type="text" name="item[title]" id="itemTitle" placeholder="Title" class="ss-admin-form-text"></div>
         <div class="ss-admin-editor-buttons fixed">
-            <?php include('editor_buttons.php'); ?>
+            <?php include('editor-buttons.php'); ?>
         </div>
         <div>
             <iframe src="about:blank" id="editor" name="editor" frameborder="0"></iframe>

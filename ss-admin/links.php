@@ -10,23 +10,15 @@
         <h3>Item link structure</h3>
     </div>
 
-    <?php
-        // $links = cfg('routes');
-        // pre($links);
-        // [0] => ~^/(?\d+)\.item$~i
-        // [1] => ~^/item[/\-](?\d+)(\.html|)$~i
-        // [2] => ~^/item[/\-](?\d+)[/\-](?[a-z0-9-]+)(\.html|)$~i
-        // [3] => ~^/(?[a-z0-9-]+)[/\-](?\d+)\.(item|html)$~i
-        // [4] => ~^/item/(?[a-z0-9-]+)(\.html|)$~i
-    ?>
     <ul class="ss-admin-item-links">
         <li>/123.item</li>
         <li>/item/123</li>
         <li>/item/123.html</li>
-        <li>/title/123.html</li>
-        <li>/title/123.item</li>
-        <li>/item/title.html (<span class="gray">default</span>)</li>
-        <li>/item/123/title.html</li>
+        <li>/title-slug/123.html</li>
+        <li>/title-slug/123.item</li>
+        <li>/item/title-slug.html (<span class="gray">default</span>)</li>
+        <li>/item/title-slug</li>
+        <li>/item/123/title-slug.html</li>
     </ul>
 
 </div>

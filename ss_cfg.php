@@ -29,18 +29,18 @@ $cfg['routes'] = array(
     'item' => array(
         'file' => 'item.php',
         'patterns' => array(
-            // /123.item
+            # /123.item
             '~^/(?<id>\d+)\.item$~i',
-            // /item/123 & /item/123.html
-            // /item-123 & /item-123.html
+            # /item/123 & /item/123.html
+            # /item-123 & /item-123.html
             '~^/item[/\-](?<id>\d+)(\.html|)$~i',
-            // /item/123/lorem-ipsum & /item/123/lorem-ipsum.html
-            // /item-123-lorem-ipsum & /item-123-lorem-ipsum.html
+            # /item/123/lorem-ipsum & /item/123/lorem-ipsum.html
+            # /item-123-lorem-ipsum & /item-123-lorem-ipsum.html
             '~^/item[/\-](?<id>\d+)[/\-](?<slug>[a-z0-9-]+)(\.html|)$~i',
-            // /lorem-ipsum/123.item & /lorem-ipsum/123.html
-            // /lorem-ipsum-123.item & /lorem-ipsum-123.html
+            # /lorem-ipsum/123.item & /lorem-ipsum/123.html
+            # /lorem-ipsum-123.item & /lorem-ipsum-123.html
             '~^/(?<slug>[a-z0-9-]+)[/\-](?<id>\d+)\.(item|html)$~i',
-            // /item/lorem-ipsum.html
+            # /item/lorem-ipsum.html
             '~^/item/(?<slug>[a-z0-9-]+)(\.html|)$~i',
         )
     )
