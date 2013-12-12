@@ -133,7 +133,7 @@ function qry_parse($qry) {
                     break;
                 case 'true':
                 case 'false':
-                    if ($val == true) { $val = true; } else { $val = false; }
+                    $val = ($val == 'true') ? true : false;
                     break;
             }
             $result[trim($key)] = $val;
