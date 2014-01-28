@@ -1,5 +1,5 @@
 <?php
-$menus = ss_menu_getLinks();
+$menus = ss_menu_getAll();
 ?>
 
 <ul>

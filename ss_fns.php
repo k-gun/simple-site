@@ -105,7 +105,6 @@ function get_uri($remove_query = true) {
 }
 
 function get_image_extension($mime) {
-    // array_search?
     foreach (cfg('media.image.mimeTypes') as $key => $val) {
         if ($key == $mime) {
             return $val;

@@ -3,7 +3,7 @@
 define('SS_MENU_POSITION_HEAD', 'head');
 define('SS_MENU_POSITION_FOOT', 'foot');
 
-function ss_menu_getLinks($opts = null) {
+function ss_menu_getAll($opts = null) {
     $opts = get_options($opts);
 
     $where = '';
