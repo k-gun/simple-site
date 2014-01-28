@@ -94,7 +94,7 @@ function ss_item_formatLink($item, $format = null) {
 }
 
 function ss_item_applyCallback($input, Closure $callback = null) {
-    if ($callback !== null && is_callable($callback)) {
+    if (is_callable($callback)) {
         $input = $callback($input);
     }
     return $input;
