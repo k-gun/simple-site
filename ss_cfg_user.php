@@ -1,6 +1,6 @@
 <?php
 // Change it to your local server ip
-define('SS_LOCAL', ($_SERVER['SERVER_ADDR'] == '127.0.1.1'));
+define('SS_LOCAL', ($_SERVER['SERVER_ADDR'] == '127.0.0.1'));
 
 
 if (SS_LOCAL) {

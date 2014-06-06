@@ -21,7 +21,7 @@ __ss.editor = {
         var body = this.getDocumentBody();
         var html = mii.trim(body.innerHTML);
         html = html.replace(/<p><br([\s\/]*)><\/p>/i, "");
-        html = html.replace(/<strike([^>]*)>(.*?)<\/strike>/i, "<s$1>$2</s>");
+        // html = html.replace(/<strike([^>]*)>(.*?)<\/strike>/i, "<s$1>$2</s>");
         return html;
     },
     insertHtml: function(html) {
@@ -113,6 +113,7 @@ mii.onReady(function($){
             $.dom("#editor, .ss-admin-buttons").show(0);
             $.dom("#itemContent").removeClass("item-content-visible");
         }
+        setTextareaValue(); // @fix
     });
 
     // Image modal

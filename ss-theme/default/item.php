@@ -20,7 +20,7 @@ if (!no($item)):
 
         <?php if (the_item_isCommenAllowed($item)): ?>
         <div class="ss-item-comments">
-            <?php include('comment_form.php'); ?>
+            <?php include_once('inc_comment-form.php'); ?>
         </div>
         <?php endif; ?>
 

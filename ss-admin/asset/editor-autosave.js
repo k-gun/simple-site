@@ -14,7 +14,7 @@ mii.onReady(function($){
 
     var time = 1000, data;
     setInterval(function(){
-        data = form.builtQueryArray();
+        data = form.buildQueryArray();
         if (!change || $.trim(data["item[title]"]) === "") {
             return;
         }

@@ -3,9 +3,10 @@ ob_start();
 header('Content-Type: text/javascript');
 
 // tmp
-$files = ['mii.js', 'mii.event.js', 'mii.animate.js', 'mii.dom.js', 'mii.ajax.js', 'qwery.min.js'];
+$files = array('qwery.min', 'mii', 'mii.ext', 'mii.array', 'mii.object', 'mii.event', 'mii.ajax', 'mii.animate', 'mii.dom');
 // $files = ['mii-all.js'];
 foreach ($files as $file) {
+    $file .= '.js';
     $js = file_get_contents('/var/www/dev/mii/'. $file);
     print("//*** $file\n");
     print("$js");
